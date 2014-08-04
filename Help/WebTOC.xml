@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="650484e2-b0d6-45af-a9b0-0df6540cc08c" Title="Beebotte.API.Server.Net Namespace" Url="html/283769216.htm">
+    <HelpTOCNode Title="BBTDataType Enumeration" Url="html/1151262672.htm" />
+    <HelpTOCNode Id="2a8aaf6c-ce4e-4e93-8f92-7d0e4d51812a" Title="Channel Class" Url="html/930190583.htm">
+      <HelpTOCNode Title="Channel Members" Url="html/459940100.htm" />
+      <HelpTOCNode Id="aeedaec6-67ff-4537-93f6-8aa4dc4b897b" Title="Channel Constructor " Url="html/1753228170.htm">
+        <HelpTOCNode Title="Channel Constructor " Url="html/78090746.htm" />
+        <HelpTOCNode Title="Channel Constructor (String)" Url="html/712977626.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Channel Methods" Url="html/517891927.htm" />
+      <HelpTOCNode Id="9508c312-bd90-4c6c-ad7f-ff51100b0f1f" Title="Channel Properties" Url="html/244318081.htm">
+        <HelpTOCNode Title="IsPublic Property " Url="html/1994167986.htm" />
+        <HelpTOCNode Title="Owner Property " Url="html/259428001.htm" />
+        <HelpTOCNode Title="Resources Property " Url="html/1630806708.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3db1114b-d279-4d9f-99cf-f014f6103093" Title="Connector Class" Url="html/964911776.htm">
+      <HelpTOCNode Title="Connector Members" Url="html/1105075110.htm" />
+      <HelpTOCNode Id="96f8c8b7-285d-4814-b0ba-f1f937ebabc8" Title="Connector Constructor " Url="html/420221528.htm">
+        <HelpTOCNode Title="Connector Constructor (String, String)" Url="html/2102282498.htm" />
+        <HelpTOCNode Title="Connector Constructor (String, String, String, String, Int32, String)" Url="html/1258493895.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="506dc14d-cde8-4f05-8fba-3cffc9cba0f3" Title="Connector Fields" Url="html/1368736581.htm">
+        <HelpTOCNode Title="APIVersion Field" Url="html/2008027858.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="744495a5-e150-417e-9ad6-b8e9c6bda530" Title="Connector Methods" Url="html/1686673696.htm">
+        <HelpTOCNode Title="CreateChannel Method " Url="html/1672215626.htm" />
+        <HelpTOCNode Title="CreateResource Method " Url="html/1277483914.htm" />
+        <HelpTOCNode Title="DeleteChannel Method " Url="html/1047567650.htm" />
+        <HelpTOCNode Title="DeleteResource Method " Url="html/584033147.htm" />
+        <HelpTOCNode Title="GetAllChannels Method " Url="html/1756078160.htm" />
+        <HelpTOCNode Title="GetAllResources Method " Url="html/894052216.htm" />
+        <HelpTOCNode Title="GetChannel Method " Url="html/1374840659.htm" />
+        <HelpTOCNode Title="GetResource Method " Url="html/2036202506.htm" />
+        <HelpTOCNode Title="PublicRead Method " Url="html/1800822499.htm" />
+        <HelpTOCNode Title="Publish Method " Url="html/1866053671.htm" />
+        <HelpTOCNode Title="PublishBulk Method " Url="html/1914929085.htm" />
+        <HelpTOCNode Title="Read Method " Url="html/2047896408.htm" />
+        <HelpTOCNode Title="Write Method " Url="html/1235448089.htm" />
+        <HelpTOCNode Title="WriteBulk Method " Url="html/1873052456.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a23e0aca-abde-4450-8404-108891a7bf24" Title="Connector Properties" Url="html/426754319.htm">
+        <HelpTOCNode Title="AccessKey Property " Url="html/358267844.htm" />
+        <HelpTOCNode Title="Hostname Property " Url="html/1732410969.htm" />
+        <HelpTOCNode Title="Port Property " Url="html/1819312262.htm" />
+        <HelpTOCNode Title="Protocol Property " Url="html/371116034.htm" />
+        <HelpTOCNode Title="SecureKey Property " Url="html/1455225737.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="fb52b2a1-46c4-4524-b1b5-ff6cbd0ba8ed" Title="Constants Class" Url="html/1644966016.htm">
+      <HelpTOCNode Title="Constants Members" Url="html/1901525970.htm" />
+      <HelpTOCNode Id="e4f146b8-83cf-474c-9a9c-6b23fe3eec22" Title="Constants Fields" Url="html/910664305.htm">
+        <HelpTOCNode Title="DayStats Field" Url="html/1244585655.htm" />
+        <HelpTOCNode Title="DefaultHostName Field" Url="html/1015656664.htm" />
+        <HelpTOCNode Title="DefaultPort Field" Url="html/1087493021.htm" />
+        <HelpTOCNode Title="DefaultProtocol Field" Url="html/2096922150.htm" />
+        <HelpTOCNode Title="DefaultVersion Field" Url="html/413501428.htm" />
+        <HelpTOCNode Title="HourStats Field" Url="html/885525804.htm" />
+        <HelpTOCNode Title="JsonContentType Field" Url="html/1489690378.htm" />
+        <HelpTOCNode Title="Raw Field" Url="html/1699012321.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Constants Methods" Url="html/710769496.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="74c90952-016e-4e84-9724-102eccaab56f" Title="EntityBase Class" Url="html/1085230064.htm">
+      <HelpTOCNode Title="EntityBase Members" Url="html/1256600438.htm" />
+      <HelpTOCNode Title="EntityBase Methods" Url="html/74534080.htm" />
+      <HelpTOCNode Id="406b2230-e1f6-4762-a6be-6e99ee3de5e7" Title="EntityBase Properties" Url="html/379319311.htm">
+        <HelpTOCNode Title="Description Property " Url="html/1221262914.htm" />
+        <HelpTOCNode Title="Label Property " Url="html/1356471089.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/2123031759.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="497efb6b-e9a9-41e7-9503-ffbcaf871384" Title="ExceptionBase Class" Url="html/1562167949.htm">
+      <HelpTOCNode Title="ExceptionBase Members" Url="html/1677227031.htm" />
+      <HelpTOCNode Title="ExceptionBase Constructor " Url="html/435478765.htm" />
+      <HelpTOCNode Title="ExceptionBase Methods" Url="html/1991444873.htm" />
+      <HelpTOCNode Title="ExceptionBase Properties" Url="html/956079165.htm" />
+      <HelpTOCNode Title="ExceptionBase Events" Url="html/187681809.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="HttpVerb Enumeration" Url="html/1879859255.htm" />
+    <HelpTOCNode Id="9277e38c-31e8-4f74-aa07-df9fb12f89dc" Title="InvalidParameterSchemaException Class" Url="html/122081683.htm">
+      <HelpTOCNode Title="InvalidParameterSchemaException Members" Url="html/1027362333.htm" />
+      <HelpTOCNode Id="bd080bb9-f7ca-4454-afd5-477f0205b451" Title="InvalidParameterSchemaException Constructor " Url="html/1402617014.htm">
+        <HelpTOCNode Title="InvalidParameterSchemaException Constructor (String)" Url="html/1572403261.htm" />
+        <HelpTOCNode Title="InvalidParameterSchemaException Constructor (String, String)" Url="html/523801082.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="InvalidParameterSchemaException Methods" Url="html/587101062.htm" />
+      <HelpTOCNode Title="InvalidParameterSchemaException Properties" Url="html/54142825.htm" />
+      <HelpTOCNode Title="InvalidParameterSchemaException Events" Url="html/731871144.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="a36c6210-2fa6-4e19-b645-b5a59879e322" Title="JsonHelper Class" Url="html/1724332380.htm">
+      <HelpTOCNode Title="JsonHelper Members" Url="html/1447885470.htm" />
+      <HelpTOCNode Id="693398c8-c806-4ca5-a4e7-7064390e77ce" Title="JsonHelper Methods" Url="html/1882686878.htm">
+        <HelpTOCNode Title="JsonDeserialize(T) Method " Url="html/2061641562.htm" />
+        <HelpTOCNode Title="JsonSerialize(T) Method " Url="html/240450268.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c4f251bc-861a-4135-b5df-61f829499f82" Title="MissingParameterException Class" Url="html/451274186.htm">
+      <HelpTOCNode Title="MissingParameterException Members" Url="html/520884723.htm" />
+      <HelpTOCNode Title="MissingParameterException Constructor " Url="html/1464398943.htm" />
+      <HelpTOCNode Title="MissingParameterException Methods" Url="html/181238924.htm" />
+      <HelpTOCNode Title="MissingParameterException Properties" Url="html/1088931501.htm" />
+      <HelpTOCNode Title="MissingParameterException Events" Url="html/1983078058.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="OperationUri Enumeration" Url="html/1595900691.htm" />
+    <HelpTOCNode Id="4b918838-5c8b-4605-9a94-12d70e26340a" Title="ReadMessageBase Class" Url="html/1112795377.htm">
+      <HelpTOCNode Title="ReadMessageBase Members" Url="html/1658608355.htm" />
+      <HelpTOCNode Title="ReadMessageBase Methods" Url="html/1863451138.htm" />
+      <HelpTOCNode Id="d2d09f0d-d140-4f1d-a001-a0ff3e348159" Title="ReadMessageBase Properties" Url="html/2048200847.htm">
+        <HelpTOCNode Title="Channel Property " Url="html/1115847586.htm" />
+        <HelpTOCNode Title="Limit Property " Url="html/411085755.htm" />
+        <HelpTOCNode Title="Resource Property " Url="html/391640129.htm" />
+        <HelpTOCNode Title="Source Property " Url="html/468098207.htm" />
+        <HelpTOCNode Title="TimeRange Property " Url="html/1644822728.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2c5fb0d7-6453-48bf-aa4b-ab675ca0e119" Title="RequestBase Class" Url="html/421769571.htm">
+      <HelpTOCNode Title="RequestBase Members" Url="html/395261617.htm" />
+      <HelpTOCNode Title="RequestBase Methods" Url="html/1351036732.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b6e39cae-5820-4ab4-b8f1-f88ec8cce987" Title="Resource Class" Url="html/1053313112.htm">
+      <HelpTOCNode Title="Resource Members" Url="html/2139630228.htm" />
+      <HelpTOCNode Id="9de5d481-c1d4-490d-b86a-3a14cd1b6529" Title="Resource Constructor " Url="html/1829564679.htm">
+        <HelpTOCNode Title="Resource Constructor (String, String, String, String)" Url="html/731018446.htm" />
+        <HelpTOCNode Title="Resource Constructor (String, String, String, String, String)" Url="html/1338982212.htm" />
+        <HelpTOCNode Title="Resource Constructor (String, String, String)" Url="html/269930641.htm" />
+        <HelpTOCNode Title="Resource Constructor (String, String)" Url="html/1765982019.htm" />
+        <HelpTOCNode Title="Resource Constructor (String)" Url="html/1107608977.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Resource Methods" Url="html/1506624388.htm" />
+      <HelpTOCNode Id="cd9b9a0d-4230-4cdd-8878-e1a3d5809952" Title="Resource Properties" Url="html/787877011.htm">
+        <HelpTOCNode Title="Channel Property " Url="html/1056779250.htm" />
+        <HelpTOCNode Title="Inherit Property " Url="html/67132537.htm" />
+        <HelpTOCNode Title="IsPublic Property " Url="html/442008435.htm" />
+        <HelpTOCNode Title="Owner Property " Url="html/1835175110.htm" />
+        <HelpTOCNode Title="Type Property " Url="html/401240888.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2f0de250-58a4-4dff-92bc-3ad4c72a8a9e" Title="ResourceData Class" Url="html/2127984554.htm">
+      <HelpTOCNode Title="ResourceData Members" Url="html/769229273.htm" />
+      <HelpTOCNode Id="4efd0e7b-03ca-4658-b23b-0300f9e871de" Title="ResourceData Constructor " Url="html/2070144824.htm">
+        <HelpTOCNode Title="ResourceData Constructor (String, Object, Int32)" Url="html/1494141023.htm" />
+        <HelpTOCNode Title="ResourceData Constructor (String, Object)" Url="html/1649720266.htm" />
+        <HelpTOCNode Title="ResourceData Constructor (String, Object, String)" Url="html/749562890.htm" />
+        <HelpTOCNode Title="ResourceData Constructor (String, Object, Int32, String)" Url="html/836252970.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ResourceData Methods" Url="html/1071536465.htm" />
+      <HelpTOCNode Id="f890654b-5ed0-40b1-894a-e645e6a80112" Title="ResourceData Properties" Url="html/1358339357.htm">
+        <HelpTOCNode Title="Data Property " Url="html/53434517.htm" />
+        <HelpTOCNode Title="Resource Property " Url="html/510024856.htm" />
+        <HelpTOCNode Title="Source Property " Url="html/175813536.htm" />
+        <HelpTOCNode Title="TimeStamp Property " Url="html/647479948.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="576c6a58-b3ca-4b3e-a9b1-37d5c25a34b8" Title="ResourceRecord Class" Url="html/296314161.htm">
+      <HelpTOCNode Title="ResourceRecord Members" Url="html/1570043991.htm" />
+      <HelpTOCNode Title="ResourceRecord Methods" Url="html/253029204.htm" />
+      <HelpTOCNode Id="04011ea7-8d98-4d49-9510-815e78122f73" Title="ResourceRecord Properties" Url="html/1081966464.htm">
+        <HelpTOCNode Title="Data Property " Url="html/2097707413.htm" />
+        <HelpTOCNode Title="DeviceId Property " Url="html/468675128.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/1934253706.htm" />
+        <HelpTOCNode Title="Resource Property " Url="html/1836362410.htm" />
+        <HelpTOCNode Title="TimeSpan Property " Url="html/1127254831.htm" />
+        <HelpTOCNode Title="Type Property " Url="html/329291751.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b19dfb69-ec5c-40d8-9cb8-9cd5553ef119" Title="RestClient Class" Url="html/1187770835.htm">
+      <HelpTOCNode Title="RestClient Members" Url="html/1888598416.htm" />
+      <HelpTOCNode Id="2e77b25d-dc34-432a-9d0c-64f0550eac83" Title="RestClient Constructor " Url="html/1285426323.htm">
+        <HelpTOCNode Title="RestClient Constructor " Url="html/1275804889.htm" />
+        <HelpTOCNode Title="RestClient Constructor (String)" Url="html/1684367156.htm" />
+        <HelpTOCNode Title="RestClient Constructor (String, String)" Url="html/147584427.htm" />
+        <HelpTOCNode Title="RestClient Constructor (String, String, String, String, DateTime)" Url="html/269188327.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="958558cf-01f5-49a0-8576-e869115523c5" Title="RestClient Methods" Url="html/205807529.htm">
+        <HelpTOCNode Title="MakeRequest Method " Url="html/1403858129.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c2972e1c-c5d2-42b9-a3f2-29ee02d1621d" Title="RestClient Properties" Url="html/985758679.htm">
+        <HelpTOCNode Title="ContentType Property " Url="html/1174663732.htm" />
+        <HelpTOCNode Title="Date Property " Url="html/1195296814.htm" />
+        <HelpTOCNode Title="EndPoint Property " Url="html/1879069336.htm" />
+        <HelpTOCNode Title="Method Property " Url="html/801961568.htm" />
+        <HelpTOCNode Title="PostData Property " Url="html/1649243096.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="507f61b9-9810-48cf-8fa2-b17fe2b21c88" Title="Utilities Class" Url="html/8390497.htm">
+      <HelpTOCNode Title="Utilities Members" Url="html/1971962784.htm" />
+      <HelpTOCNode Id="fdc20cea-3499-4a1a-bb02-2ad62ebd8b2f" Title="Utilities Methods" Url="html/1847575625.htm">
+        <HelpTOCNode Title="AppendIf Method " Url="html/574302892.htm" />
+        <HelpTOCNode Title="GenerateHMACHash Method " Url="html/1898777443.htm" />
+        <HelpTOCNode Title="GenerateMD5Hash Method " Url="html/1228202851.htm" />
+        <HelpTOCNode Title="GenerateUrl Method " Url="html/1302351272.htm" />
+        <HelpTOCNode Title="GetDescription Method " Url="html/1093328870.htm" />
+        <HelpTOCNode Title="GetOperationUri Method " Url="html/1214270015.htm" />
+        <HelpTOCNode Title="ToDictionary Method " Url="html/1581993919.htm" />
+        <HelpTOCNode Title="ValidateChannelFormat Method " Url="html/770837414.htm" />
+        <HelpTOCNode Title="ValidateLabelFormat Method " Url="html/1391826567.htm" />
+        <HelpTOCNode Title="ValidateResourceFormat Method " Url="html/1123898774.htm" />
+        <HelpTOCNode Title="ValidateSourceFormat Method " Url="html/1256760831.htm" />
+        <HelpTOCNode Title="ValidateTimeRangeFormat Method " Url="html/1435229229.htm" />
+        <HelpTOCNode Title="ValidateTypeFormat Method " Url="html/586542974.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="48938748-b0fc-4d3c-8670-2092e19c3a67" Title="WriteMessageBase Class" Url="html/1095414108.htm">
+      <HelpTOCNode Title="WriteMessageBase Members" Url="html/1837096142.htm" />
+      <HelpTOCNode Title="WriteMessageBase Methods" Url="html/908083375.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
