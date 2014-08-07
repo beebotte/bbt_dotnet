@@ -53,10 +53,10 @@ You can write data to a resource of one of your channels using:
 If you have multiple records to write (to one or multiple resources of the same channel), you can use the `WriteBulk` method:
 
     var resources = new List<ResourceData>
-                {
-                    new ResourceData("resource1", "Hello"),
-                    new ResourceData("resource2", "World")
-                };
+        {
+            new ResourceData("resource1", "Hello"),
+            new ResourceData("resource2", "World")
+        };
     bbtConnector.WriteBulk("channel1", resources);
 
 ### Publishing Data
@@ -71,4 +71,12 @@ By default, published data is public, to publish a private message, you need to 
 
     bbt.Publish("private-any_channel", "any_resource", "Hello World")
 
+If you have multiple records to publish (to one or multiple resources of the same channel), you can use the `PublishBulk` method:
+
+    var resources = new List<ResourceData>
+        {
+            new ResourceData("resource1", "Hello"),
+            new ResourceData("resource2", "World")
+        };
+    bbtConnector.PublishBulk("channel1", resources);
 
