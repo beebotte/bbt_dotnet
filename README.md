@@ -57,7 +57,7 @@ If you have multiple records to write (to one or multiple resources of the same 
             new ResourceData("resource1", "Hello"),
             new ResourceData("resource2", "World")
         };
-    bbtConnector.WriteBulk("channel1", resources);
+    bbt.WriteBulk("channel1", resources);
 
 ### Publishing Data
 You can publish data to a channel resource using:
@@ -78,7 +78,7 @@ If you have multiple records to publish (to one or multiple resources of the sam
             new ResourceData("resource1", "Hello"),
             new ResourceData("resource2", "World")
         };
-    bbtConnector.PublishBulk("channel1", resources);
+    bbt.PublishBulk("channel1", resources);
 
 ### Resource Management
 The library provides a set of methods to manipulate resource objects as follows:
