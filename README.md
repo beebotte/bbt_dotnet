@@ -31,8 +31,6 @@ As a reminder, Beebotte resource description uses a two levels hierarchy:
 ### Beebotte Constructor
 Use your account API and secret keys to initialize Beebotte connector:
 
-    from beebotte import *
-    
     string accesskey  = “YOUR_API_KEY”;
     string secretkey  = “YOUR_SECRET_KEY”;
     string hostname   = “api.beebotte.com”;
