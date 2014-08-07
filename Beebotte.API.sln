@@ -3,31 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebotte.API.Server.Net", "Beebotte.API.Server.Net\Beebotte.API.Server.Net.csproj", "{DC92227E-8BC4-474B-94BC-9B10896F0870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebotte.Demo.Services", "Beebotte.Demo.ServerMonitoringService\Beebotte.Demo.Services.csproj", "{B658048A-BEBC-4391-AFC9-B772A87C45F5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeebotteConsumer", "BeebotteConsumer\BeebotteConsumer.csproj", "{BC47B2C6-5451-4CB6-A02C-B616413A8188}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}"
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://beebotte.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Beebotte.API.Server.Net\\Beebotte.API.Server.Net.csproj
-		SccProjectName1 = Beebotte.API.Server.Net
-		SccLocalPath1 = Beebotte.API.Server.Net
-		SccProjectUniqueName2 = Beebotte.Demo.ServerMonitoringService\\Beebotte.Demo.Services.csproj
-		SccProjectName2 = Beebotte.Demo.ServerMonitoringService
-		SccLocalPath2 = Beebotte.Demo.ServerMonitoringService
-		SccProjectUniqueName3 = BeebotteConsumer\\BeebotteConsumer.csproj
-		SccProjectName3 = BeebotteConsumer
-		SccLocalPath3 = BeebotteConsumer
-		SccProjectUniqueName4 = test\\test.csproj
-		SccProjectName4 = test
-		SccLocalPath4 = test
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
 		Debug|Any CPU = Debug|Any CPU
@@ -46,36 +22,6 @@ Global
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{B658048A-BEBC-4391-AFC9-B772A87C45F5}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{BC47B2C6-5451-4CB6-A02C-B616413A8188}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{9C9FBF35-47F7-47F8-9E06-105B7F0C4950}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
