@@ -31,9 +31,9 @@ As a reminder, Beebotte resource description uses a two levels hierarchy:
 ### Beebotte Constructor
 Use your account API and secret keys to initialize Beebotte connector:
 
-    string accesskey  = “YOUR_API_KEY”;
-    string secretkey  = “YOUR_SECRET_KEY”;
-    string hostname   = “api.beebotte.com”;
+    string accesskey  = "YOUR_API_KEY";
+    string secretkey  = "YOUR_SECRET_KEY";
+    string hostname   = "api.beebotte.com";
     Connector bbt = new Connector( accesskey, secretkey, hostname);
     
 ### Reading Data
@@ -104,6 +104,7 @@ The library provides a set of methods to manipulate resource objects as follows:
 The library provides a set of methods to manipulate channel objects as follows:
 
 //Create the channel object
+
     Channel channel = new Channel();
     channel.Name = "channel1";
     channel.Label = "label1";
@@ -116,3 +117,15 @@ The library provides a set of methods to manipulate channel objects as follows:
         };
     channel.Resources = resources;
     bbt.CreateChannel(channel);
+
+//Get all channel objects
+
+    var channels = bbt.GetAllChannels();
+
+//Get a specific channel object
+
+    var channel = bbt.GetChannel("channel1");
+
+//Delete a specific channel object
+
+    bbt.DeleteChannel("channel1");
