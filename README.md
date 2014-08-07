@@ -39,5 +39,10 @@ Use your account API and secret keys to initialize Beebotte connector:
 ### Reading Data
 You can read data from one of your channel resources using:
 
-    List<ResourceRecord> data = bbt.Read("channel1", "resource1", 5); // read last 5 records
+    var records = bbt.Read("channel1", "resource1", 5); // read last 5 records
+    
+You can read data from a public channel by specifying the channel owner:
+
+    var records  = bbtConnector.PublicRead("username", "channel1", "resource1", 5); //read last 5 
+
 
