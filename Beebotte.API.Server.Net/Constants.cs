@@ -200,7 +200,7 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// The default protocol
         /// </summary>
-        public const string DefaultProtocol = "http";
+        public const string DefaultProtocol = "https";
         /// <summary>
         /// The default host name
         /// </summary>

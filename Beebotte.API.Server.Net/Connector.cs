@@ -87,6 +87,17 @@ namespace Beebotte.API.Server.Net
         /// </summary>
         /// <param name="accessKey">Account Access Key</param>
         /// <param name="secureKey">Account Security Key</param>
+        /// <param name="hostName">Beebotte API host name</param>
+        public Connector(string accessKey, string secureKey, string hostName)
+            : this(accessKey, secureKey, hostName, Constants.DefaultProtocol, Constants.DefaultPort, Constants.DefaultVersion)
+        {
+        }
+
+        /// <summary>
+        /// Initialize a new instance of Beebotte connector
+        /// </summary>
+        /// <param name="accessKey">Account Access Key</param>
+        /// <param name="secureKey">Account Security Key</param>
         /// <param name="hostname">Beebotte API host name</param>
         /// <param name="protocol">Beebotte API protocol</param>
         /// <param name="port">Beebotte API port</param>
