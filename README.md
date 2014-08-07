@@ -35,3 +35,9 @@ Use your account API and secret keys to initialize Beebotte connector:
     string secretkey  = “YOUR_SECRET_KEY”;
     string hostname   = “api.beebotte.com”;
     Connector bbt = new Connector( accesskey, secretkey, hostname);
+    
+### Reading Data
+You can read data from one of your channel resources using:
+
+    List<ResourceRecord> data = bbt.Read("channel1", "resource1", 5); // read last 5 records
+
