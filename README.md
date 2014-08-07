@@ -59,5 +59,16 @@ If you have multiple records to write (to one or multiple resources of the same 
                 };
     bbtConnector.WriteBulk("channel1", resources);
 
+### Publishing Data
+You can publish data to a channel resource using:
+
+    bbt.Publish("any_channel", "any_resource", "Hello World")
+
+Published data is transient. It will not be saved to any database; rather, it will be delivered to active subscribers in real time. 
+The Publish operations do not require that the channel and resource be actually created. 
+They will be considered as virtual: the channel and resource exist as long as you are publishing data to them. 
+By default, published data is public, to publish a private message, you need to add `private-` prefix to the channel name like this:
+
+    bbt.Publish("private-any_channel", "any_resource", "Hello World")
 
 
