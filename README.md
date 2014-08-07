@@ -14,3 +14,26 @@ Think you.ve found a bug? Want to see a new feature in beebotte? Please open an
 issue in github. Please provide as much information as possible about the issue type and how to reproduce it.
 
     https://github.com/beebotte/bbt_dotnet/issues
+    
+## Install
+
+Clone the source code from github
+    git clone https://github.com/beebotte/bbt_dotnet.git
+  
+## Usage
+To use the library, you need to be a registered user. If this is not the case, create your account at <http://beebotte.com> and note your access credentials.
+
+As a reminder, Beebotte resource description uses a two levels hierarchy:
+
+* Channel: physical or virtual connected object (an application, an arduino, a coffee machine, etc) providing some resources
+* Resource: most elementary part of Beebotte, this is the actual data source (e.g. temperature from a domotics sensor)
+  
+### Beebotte Constructor
+Use your account API and secret keys to initialize Beebotte connector:
+
+    from beebotte import *
+    
+    string accesskey  = “YOUR_API_KEY”;
+    string secretkey  = “YOUR_SECRET_KEY”;
+    string hostname   = “api.beebotte.com”;
+    Connector bbt = new Connector( accesskey, secretkey, hostname);
