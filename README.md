@@ -80,3 +80,11 @@ If you have multiple records to publish (to one or multiple resources of the sam
         };
     bbtConnector.PublishBulk("channel1", resources);
 
+### Resource Object
+The library provides a Resource Class that can be used as follows
+
+//Create the resource object
+
+    var resource = new Resource("channel1", "resource1", "string");
+    bbt.CreateResource(resource);    
+
