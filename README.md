@@ -43,6 +43,21 @@ You can read data from one of your channel resources using:
     
 You can read data from a public channel by specifying the channel owner:
 
-    var records  = bbtConnector.PublicRead("username", "channel1", "resource1", 5); //read last 5 
+    var records  = bbtConnector.PublicRead("owner", "channel1", "resource1", 5); //read last 5 
+    
+### Writing Data
+You can write data to a resource of one of your channels using:
+
+    bbt.Write("channel1", "resource1", "Hello World");
+   
+If you have multiple records to write (to one or multiple resources of the same channel), you can use the `WriteBulk` method:
+
+    var resources = new List<ResourceData>
+                {
+                    new ResourceData("resource1", "Hello"),
+                    new ResourceData("resource2", "World")
+                };
+    bbtConnector.WriteBulk("channel1", resources);
+
 
 
