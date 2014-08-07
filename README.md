@@ -80,11 +80,39 @@ If you have multiple records to publish (to one or multiple resources of the sam
         };
     bbtConnector.PublishBulk("channel1", resources);
 
-### Resource Object
-The library provides a Resource Class that can be used as follows
+### Resource Management
+The library provides a set of methods to manipulate resource objects as follows:
 
 //Create the resource object
 
     var resource = new Resource("channel1", "resource1", "string");
     bbt.CreateResource(resource);    
 
+//Get all resource objects for a given channel
+
+    var resources = bbt.GetAllResources("channel1");
+    
+//Get a specific resource object
+
+    var resource = bbt.GetResource("channel1", "resource1");
+    
+//Delete a resource object
+
+    bbt.DeleteResource("channel1", "resource1");
+
+### Channel Management
+The library provides a set of methods to manipulate channel objects as follows:
+
+//Create the channel object
+    Channel channel = new Channel();
+    channel.Name = "channel1";
+    channel.Label = "label1";
+    channel.Description = "description1";
+    channel.IsPublic = false;
+    var resources = new List<ResourceData>
+        {
+            new ResourceData("resource1", "Hello"),
+            new ResourceData("resource2", "World")
+        };
+    channel.Resources = resources;
+    bbt.CreateChannel(channel);
