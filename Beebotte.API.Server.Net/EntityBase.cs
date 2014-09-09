@@ -28,6 +28,10 @@ namespace Beebotte.API.Server.Net
         #region Fields
 
         /// <summary>
+        /// Boolean, True if entity request requires authentication from Beebotte; False in the otherwise.
+        /// </summary>
+        private bool _requireAuthentication;
+        /// <summary>
         /// The _verb
         /// </summary>
         private string _verb;
@@ -61,6 +65,10 @@ namespace Beebotte.API.Server.Net
         [DataMember(IsRequired = false, EmitDefaultValue = false, Name = "description", Order = 3)]
         public string Description { get; set; }
 
+        internal override bool RequireAuthentication
+        {
+            get { return _requireAuthentication; }
+        }
 
         /// <summary>
         /// Gets the verb.
@@ -86,6 +94,13 @@ namespace Beebotte.API.Server.Net
         /// <value>The base URI.</value>
         protected abstract string BaseUri { get; }
 
+
+        /// <summary>
+        /// Gets the base URI for public methods.
+        /// </summary>
+        /// <value>The base URI.</value>
+        protected abstract string PublicBaseUri { get; }
+
         #endregion
 
         #region Methods
@@ -97,6 +112,7 @@ namespace Beebotte.API.Server.Net
         {
             _verb = HttpVerb.POST.ToString();
             _uri = BaseUri;
+            _requireAuthentication = true;
         }
 
         /// <summary>
@@ -106,6 +122,7 @@ namespace Beebotte.API.Server.Net
         {
             _verb = HttpVerb.GET.ToString();
             _uri = String.Format("{0}/{1}", BaseUri, Name);
+            _requireAuthentication = true;
         }
 
         /// <summary>
@@ -115,6 +132,7 @@ namespace Beebotte.API.Server.Net
         {
             _verb = HttpVerb.GET.ToString();
             _uri = BaseUri;
+            _requireAuthentication = true;
         }
 
         /// <summary>
@@ -124,6 +142,27 @@ namespace Beebotte.API.Server.Net
         {
             _verb = HttpVerb.DELETE.ToString();
             _uri = String.Format("{0}/{1}", BaseUri, Name);
+            _requireAuthentication = true;
+        }
+
+        /// <summary>
+        /// Sets the public Read all mode.
+        /// </summary>
+        internal void SetPublicReadAllMode()
+        {
+            _verb = HttpVerb.GET.ToString();
+            _uri = PublicBaseUri;
+            _requireAuthentication = true;
+        }
+
+        /// <summary>
+        /// Sets the public Read all mode.
+        /// </summary>
+        internal void SetPublicReadMode()
+        {
+            _verb = HttpVerb.GET.ToString();
+            _uri = String.Format("{0}/{1}", PublicBaseUri, Name);
+            _requireAuthentication = false;
         }
 
         #endregion

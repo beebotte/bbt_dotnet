@@ -82,11 +82,6 @@ namespace Beebotte.API.Server.Net
         [DataMember(IsRequired = false, EmitDefaultValue = false, Name = "owner", Order = 8)]
         public string Owner { get; set; }
 
-        internal override bool RequireAuthentication
-        {
-            get { return true; }
-        }
-
         /// <summary>
         /// Gets the content of the serialized.
         /// </summary>
@@ -110,6 +105,11 @@ namespace Beebotte.API.Server.Net
         protected override string BaseUri
         {
             get { return OperationUri.ManageResource.GetOperationUri().Replace("channelName", _channel); }
+        }
+
+        protected override string PublicBaseUri
+        {
+            get { throw new NotImplementedException(); }
         }
 
         #endregion

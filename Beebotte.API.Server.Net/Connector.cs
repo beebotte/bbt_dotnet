@@ -302,6 +302,32 @@ namespace Beebotte.API.Server.Net
         }
 
         /// <summary>
+        /// This method allows you to get the models of all the public channels  of a given user
+        /// </summary>
+        /// <param name="owner">The owner of the public channels</param>
+        /// <returns>List of Beebotte.API.Server.Net.Channel</returns>
+        public List<Channel> GetPublicChannels(string owner)
+        {
+            var channel = new Channel();
+            channel.Owner = owner;
+            channel.SetPublicReadAllMode();
+            return JsonHelper.JsonDeserialize<List<Channel>>(SendRequest(channel));
+        }
+
+        /// <summary>
+        /// This method allows you to get the model of a public channel
+        /// </summary>
+        /// <param name="owner">The owner of the channel</param>
+        /// <param name="channelName">A channel name to get (e.g. channel1)</param>
+        /// <returns>object of type Beebotte.API.Server.Net.Channel representing the model of the given channel</returns>
+        public Channel GetPublicChannel(string owner, string channelName)
+        {
+            var channel = new Channel(owner, channelName);
+            channel.SetPublicReadMode();
+            return JsonHelper.JsonDeserialize<Channel>(SendRequest(channel));
+        }
+
+        /// <summary>
         /// This method allows you to add a new resource to a channel
         /// </summary>
         /// <param name="resource">object of type Beebotte.API.Server.Net.Resource representing the resource to create</param>

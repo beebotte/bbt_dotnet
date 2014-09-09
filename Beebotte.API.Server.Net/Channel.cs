@@ -76,9 +76,15 @@ namespace Beebotte.API.Server.Net
             }
         }
 
-        internal override bool RequireAuthentication
+        /// <summary>
+        /// Gets the base URI for public methods
+        /// </summary>
+        protected override string PublicBaseUri
         {
-            get { return true; }
+            get
+            {
+                return String.Concat(OperationUri.ReadPublicChannel.GetOperationUri(), Owner);
+            }
         }
 
         /// <summary>
@@ -114,6 +120,17 @@ namespace Beebotte.API.Server.Net
         /// <param name="name">The name of the channel.</param>
         public Channel(string name)
         {
+            Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Channel"/> class.
+        /// </summary>
+        /// <param name="owner">The owner of the channel.</param>
+        /// <param name="name">The name of the channel.</param>
+        public Channel(string owner, string name)
+        {
+            Owner = owner;
             Name = name;
         }
 

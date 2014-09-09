@@ -52,8 +52,9 @@ namespace Beebotte.API.Server.Net
         /// Resource management operations Uri
         /// </summary>
         [Description("/{0}/channels/channelName/resources")]
-        ManageResource
-
+        ManageResource,
+        [Description("/{0}/public/channels/")]
+        ReadPublicChannel
     }
 
     /// <summary>
