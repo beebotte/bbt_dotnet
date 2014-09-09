@@ -76,6 +76,11 @@ namespace Beebotte.API.Server.Net
             }
         }
 
+        internal override bool RequireAuthentication
+        {
+            get { return true; }
+        }
+
         /// <summary>
         /// Gets the content of the serialized.
         /// </summary>

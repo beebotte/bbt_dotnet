@@ -42,6 +42,11 @@ namespace Beebotte.API.Server.Net
             get { return String.Format("{0}/{1}/{2}", OperationUri.Write.GetOperationUri(), Channel, Resource); }
         }
 
+        internal override bool RequireAuthentication
+        {
+            get { return true; }
+        }
+
         internal override string SerializedContent
         {
             get

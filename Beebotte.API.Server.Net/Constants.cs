@@ -31,7 +31,7 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// Public Read operation Uri
         /// </summary>
-        [Description("/{0}/public/data")]
+        [Description("/{0}/public/data/read")]
         PublicRead,
         /// <summary>
         /// Private Read operation Uri

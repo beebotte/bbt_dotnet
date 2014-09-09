@@ -10,6 +10,7 @@ namespace Beebotte.API.Server.Net
     {
         #region Fields
 
+        private string _uri;
         private string _serializedMessage;
 
         #endregion
@@ -33,9 +34,21 @@ namespace Beebotte.API.Server.Net
         {
             get
             {
-                return String.Format("{0}/{1}/{2}/{3}?limit={4}&source={5}&time-range={6}",
-                                     OperationUri.PublicRead.GetOperationUri(), Username, Channel, Resource, Limit, Source, TimeRange);
+                if (String.IsNullOrEmpty(_uri))
+                {
+                    _uri = String.Format("{0}/{1}/{2}/{3}",
+                                         OperationUri.PublicRead.GetOperationUri(), Username, Channel, Resource);
+                    _uri = _uri.AppendIf(String.Format("limit={0}", Limit), Limit > 0);
+                    _uri = _uri.AppendIf(String.Format("source={0}", Source), !String.IsNullOrEmpty(Source));
+                    _uri = _uri.AppendIf(String.Format("time-range={0}", TimeRange), !String.IsNullOrEmpty(TimeRange));
+                }
+                return _uri;
             }
+        }
+
+        internal override bool RequireAuthentication
+        {
+            get { return false; }
         }
 
         internal override string SerializedContent

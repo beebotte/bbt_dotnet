@@ -393,12 +393,13 @@ namespace Beebotte.API.Server.Net
         {
             _date = DateTime.UtcNow;
             var url = Utilities.GenerateUrl(Protocol, Hostname, Port, message.Uri);
-            var signature = Utilities.GenerateHMACHash(message.GenerateStringToSign(_date), SecureKey);
-            var headers = new Dictionary<string, string>
-                {
-                    {"Authorization", String.Format("{0}:{1}", AccessKey, signature)},
-
-                };
+            var headers = new Dictionary<string, string>();
+            if (message.RequireAuthentication)
+            {
+                var signature = Utilities.GenerateHMACHash(message.GenerateStringToSign(_date), SecureKey);
+                headers.Add("Authorization", String.Format("{0}:{1}", AccessKey, signature));
+            }
+           
             if (!String.IsNullOrEmpty(message.HashedContent))
             {
                 headers.Add("Content-MD5", message.HashedContent);

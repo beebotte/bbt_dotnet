@@ -45,6 +45,12 @@ namespace Beebotte.API.Server.Net
         internal abstract string Uri { get; }
 
         /// <summary>
+        /// Checks if request requires authentication or not.
+        /// </summary>
+        /// <value>Boolean value. True if request requires authentication; false in the otherwise.</value>
+        internal abstract bool RequireAuthentication { get; }
+
+        /// <summary>
         /// Gets the content of the hashed.
         /// </summary>
         /// <value>The content of the hashed.</value>
