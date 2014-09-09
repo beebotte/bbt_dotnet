@@ -85,6 +85,23 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// Initialize a new instance of Beebotte connector
         /// </summary>
+        public Connector()
+            : this(Constants.DefaultHostName, Constants.DefaultProtocol, Constants.DefaultPort, Constants.DefaultVersion)
+        {
+        }
+
+        /// <summary>
+        /// Initialize a new instance of Beebotte connector
+        /// </summary>
+        /// <param name="hostName">Beebotte API host name</param>
+        public Connector(string hostName)
+            : this(hostName, Constants.DefaultProtocol, Constants.DefaultPort, Constants.DefaultVersion)
+        {
+        }
+
+        /// <summary>
+        /// Initialize a new instance of Beebotte connector
+        /// </summary>
         /// <param name="accessKey">Account Access Key</param>
         /// <param name="secureKey">Account Security Key</param>
         /// <param name="hostName">Beebotte API host name</param>
@@ -121,6 +138,29 @@ namespace Beebotte.API.Server.Net
             APIVersion = version;
         }
 
+
+        /// <summary>
+        /// Initialize a new instance of Beebotte connector
+        /// </summary>
+        /// <param name="hostname">Beebotte API host name</param>
+        /// <param name="protocol">Beebotte API protocol</param>
+        /// <param name="port">Beebotte API port</param>
+        /// <param name="version">Beebotte API version</param>
+        /// <exception cref="MissingParameterException"></exception>
+        public Connector(string hostname, string protocol, int port, string version)
+        {
+            if (String.IsNullOrEmpty(hostname) || String.IsNullOrEmpty(protocol) || String.IsNullOrEmpty(version))
+            {
+                throw new MissingParameterException(
+                    String.Format(
+                        "Missing parameter(s) to connect to Beebotte. Hostoname:{0}, Protocol:{1}, Port:{2}, Version:{3}.",
+                        hostname, protocol, port, version));
+            }
+            Hostname = hostname;
+            Protocol = protocol;
+            Port = port;
+            APIVersion = version;
+        }
         #endregion
 
         #region Public Mehtods
