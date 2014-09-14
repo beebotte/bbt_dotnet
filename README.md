@@ -129,3 +129,18 @@ The library provides a set of methods to manipulate channel objects as follows:
 //Delete a specific channel object
 
     bbt.DeleteChannel("channel1");
+
+### Connection Management
+The library provides a set of methods to manipulate connections as follows:
+
+//Get all connections
+
+    var connections = bbt.GetAllChannels();
+
+//Get connections for a given user
+
+    var connections = bbt.GetUserConnections("userId", "sessionId");
+
+//Delete User connections
+
+    bbt.DeleteConnectio("userId", "sessionId");
