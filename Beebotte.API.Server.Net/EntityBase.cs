@@ -118,7 +118,7 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// Sets the get mode.
         /// </summary>
-        internal void SetGetMode()
+        internal void   SetGetMode()
         {
             _verb = HttpVerb.GET.ToString();
             _uri = String.Format("{0}/{1}", BaseUri, Name);

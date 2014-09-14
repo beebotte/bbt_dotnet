@@ -1,4 +1,5 @@
-﻿// ***********************************************************************
+﻿using System;
+// ***********************************************************************
 // Assembly         : Beebotte.API.Server.Net
 // Author           : SAW
 // Created          : 07-01-2014
@@ -58,8 +59,8 @@ namespace Beebotte.API.Server.Net
         public static T JsonDeserialize<T>(string jsonString)
         {
             var ser = new DataContractJsonSerializer(typeof(T));
-            T obj;  
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
+            T obj = Activator.CreateInstance<T>(); 
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
             {
                 obj = (T) ser.ReadObject(ms);
             }

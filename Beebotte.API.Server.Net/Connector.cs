@@ -418,6 +418,47 @@ namespace Beebotte.API.Server.Net
             return result;
         }
 
+        /// <summary>
+        /// This method allows you to get all connections including active subscriptions.
+        /// </summary>
+        /// <returns>List of Beebotte.API.Server.Net.Connection</returns>
+        public List<Connection> GetAllConnections()
+        {
+            var connection = new Connection();
+            connection.SetGetAllMode();
+            List<Connection> connections = JsonHelper.JsonDeserialize<List<Connection>>(SendRequest(connection));
+            return connections;
+        }
+
+        /// <summary>
+        /// This method allows you to all the connections of a given user
+        /// </summary>
+        /// <param name="userId">Id of the user t get the connections for</param>
+        /// <param name="sessionId">Id of the session to get the connections for</param>
+        /// <returns>List of Beebotte.API.Server.Net.Connection</returns>
+        public List<Connection> GetUserConnections(string userId, string sessionId = "")
+        {
+            var connection = new Connection();
+            connection.SetGetMode(userId, sessionId);
+            return JsonHelper.JsonDeserialize<List<Connection>>(SendRequest(connection));
+        }
+
+        /// <summary>
+        /// This method allows you to drop active connections of the given user. 
+        /// If a session id is specified , only the specified session will be dropped (this is because one userid may have multiple connections)
+        /// </summary>
+        /// <param name="userId">Id of the user to drop connection for</param>
+        /// <param name="sessionId">Id of the session to drop</param>
+        /// <returns>Boolean value. True if the operation was successful, False in the otherwise.</returns>
+        public bool DeleteConnection(string userId, string sessionId = "")
+        {
+            var connection = new Connection();
+            connection.SetDeleteMode(userId, sessionId);
+            bool result;
+            Boolean.TryParse(SendRequest(connection), out result);
+            return result;
+        }
+
         #endregion
 
         #region Private Methods

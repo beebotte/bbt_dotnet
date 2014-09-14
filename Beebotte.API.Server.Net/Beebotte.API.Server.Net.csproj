@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="BulkPersistentMessage.cs" />
     <Compile Include="BulkTransientMessage.cs" />
