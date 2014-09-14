@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebotte.API.Server.Net", "Beebotte.API.Server.Net\Beebotte.API.Server.Net.csproj", "{DC92227E-8BC4-474B-94BC-9B10896F0870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -26,16 +24,6 @@ Global
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{B5883E06-09AE-4C1A-B9A8-15A74BA4B9F7}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
