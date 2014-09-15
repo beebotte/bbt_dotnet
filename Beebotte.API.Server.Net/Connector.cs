@@ -450,13 +450,11 @@ namespace Beebotte.API.Server.Net
         /// <param name="userId">Id of the user to drop connection for</param>
         /// <param name="sessionId">Id of the session to drop</param>
         /// <returns>Boolean value. True if the operation was successful, False in the otherwise.</returns>
-        public bool DeleteConnection(string userId, string sessionId = "")
+        public void DeleteConnection(string userId, string sessionId = "")
         {
             var connection = new Connection();
             connection.SetDeleteMode(userId, sessionId);
-            bool result;
-            Boolean.TryParse(SendRequest(connection), out result);
-            return result;
+            SendRequest(connection);
         }
 
         #endregion
