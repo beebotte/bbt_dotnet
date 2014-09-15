@@ -135,7 +135,7 @@ The library provides a set of methods to manipulate connections as follows:
 
 //Get all connections
 
-    var connections = bbt.GetAllChannels();
+    var connections = bbt.GetAllConnections();
 
 //Get connections for a given user
 
@@ -143,4 +143,4 @@ The library provides a set of methods to manipulate connections as follows:
 
 //Delete User connections
 
-    bbt.DeleteConnectio("userId", "sessionId");
+    bbt.DeleteConnection("userId", "sessionId");
