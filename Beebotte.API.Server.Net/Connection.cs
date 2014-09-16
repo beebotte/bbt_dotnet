@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Beebotte.API.Server.Net
 {
     [DataContract]
-    public class Connection : RequestBase
+    public class Connection <T>: RequestBase
     {
         #region Fields
 
@@ -31,8 +31,8 @@ namespace Beebotte.API.Server.Net
         [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "sid", Order = 2)]
         public string SID { get; set; }
 
-        [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "userinfo", Order = 3)]
-        public UserInfo UserInfo { get; set; }
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "userinfo", Order = 3)]
+        public T UserInfo { get; set; }
 
         [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "userid", Order = 4)]
         public string UserId { get; set; }

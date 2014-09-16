@@ -422,11 +422,11 @@ namespace Beebotte.API.Server.Net
         /// This method allows you to get all connections including active subscriptions.
         /// </summary>
         /// <returns>List of Beebotte.API.Server.Net.Connection</returns>
-        public List<Connection> GetAllConnections()
+        public List<Connection<T>> GetAllConnections<T>()
         {
-            var connection = new Connection();
+            var connection = new Connection<T>();
             connection.SetGetAllMode();
-            List<Connection> connections = JsonHelper.JsonDeserialize<List<Connection>>(SendRequest(connection));
+            List<Connection<T>> connections = JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection));
             return connections;
         }
 
@@ -436,11 +436,11 @@ namespace Beebotte.API.Server.Net
         /// <param name="userId">Id of the user t get the connections for</param>
         /// <param name="sessionId">Id of the session to get the connections for</param>
         /// <returns>List of Beebotte.API.Server.Net.Connection</returns>
-        public List<Connection> GetUserConnections(string userId, string sessionId = "")
+        public List<Connection<T>> GetUserConnections<T>(string userId, string sessionId = "")
         {
-            var connection = new Connection();
+            var connection = new Connection<T>();
             connection.SetGetMode(userId, sessionId);
-            return JsonHelper.JsonDeserialize<List<Connection>>(SendRequest(connection));
+            return JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection));
         }
 
         /// <summary>
@@ -450,9 +450,9 @@ namespace Beebotte.API.Server.Net
         /// <param name="userId">Id of the user to drop connection for</param>
         /// <param name="sessionId">Id of the session to drop</param>
         /// <returns>Boolean value. True if the operation was successful, False in the otherwise.</returns>
-        public void DeleteConnection(string userId, string sessionId = "")
+        public void DeleteConnection<T>(string userId, string sessionId = "")
         {
-            var connection = new Connection();
+            var connection = new Connection<T>();
             connection.SetDeleteMode(userId, sessionId);
             SendRequest(connection);
         }
