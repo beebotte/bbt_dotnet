@@ -110,8 +110,23 @@ namespace Beebotte.API.Server.Net
     [DataContract]
     public class UserInfo
     {
-        [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "username", Order = 1)]
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "username")]
         public string Username { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "password")]
+        public string Password { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "email")]
+        public string Email { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "avatar")]
+        public string Avatar { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "url")]
+        public string URL { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "token")]
+        public string Token { get; set; }
     }
 
     [DataContract]
