@@ -135,12 +135,12 @@ The library provides a set of methods to manipulate connections as follows:
 
 //Get all connections
 
-    var connections = bbt.GetAllConnections();
+    var connections = bbtConnector.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
 
 //Get connections for a given user
 
-    var connections = bbt.GetUserConnections("userId", "sessionId");
+    var connections = bbt.GetUserConnections<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
 //Delete User connections
 
-    bbt.DeleteConnection("userId", "sessionId");
+    bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
