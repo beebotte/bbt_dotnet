@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Beebotte.API.Server.Net
 {
     [DataContract]
-    public class Connection : RequestBase
+    public class Connection <T>: RequestBase
     {
         #region Fields
 
@@ -31,8 +31,8 @@ namespace Beebotte.API.Server.Net
         [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "sid", Order = 2)]
         public string SID { get; set; }
 
-        [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "userinfo", Order = 3)]
-        public UserInfo UserInfo { get; set; }
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "userinfo", Order = 3)]
+        public T UserInfo { get; set; }
 
         [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "userid", Order = 4)]
         public string UserId { get; set; }
@@ -110,8 +110,23 @@ namespace Beebotte.API.Server.Net
     [DataContract]
     public class UserInfo
     {
-        [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "username", Order = 1)]
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "username")]
         public string Username { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "password")]
+        public string Password { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "email")]
+        public string Email { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "avatar")]
+        public string Avatar { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "url")]
+        public string URL { get; set; }
+
+        [DataMember(EmitDefaultValue = true, IsRequired = false, Name = "token")]
+        public string Token { get; set; }
     }
 
     [DataContract]
