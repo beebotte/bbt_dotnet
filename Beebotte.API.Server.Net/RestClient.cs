@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 
 /// <summary>
@@ -131,7 +132,13 @@ namespace Beebotte.API.Server.Net
 
             request.Method = Method;
             request.ContentLength = 0;
+#if NET_45_OR_GREATER
             request.Date = Date;
+#else
+            var priMethod = request.Headers.GetType().GetMethod("AddWithoutValidate", BindingFlags.Instance | BindingFlags.NonPublic);
+            priMethod.Invoke(request.Headers, new[] { "Date", Date.ToString("R") });
+#endif
+
             request.ContentType = ContentType;
             if (headers != null)
             {

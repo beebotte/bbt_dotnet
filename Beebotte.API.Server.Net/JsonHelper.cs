@@ -36,12 +36,20 @@ namespace Beebotte.API.Server.Net
         /// <returns>System.String.</returns>
         public static string JsonSerialize<T>(T t)
         {
-     
+
+            DataContractJsonSerializer ser ;
+#if NET_45_OR_GREATER
+            
             var settings = new DataContractJsonSerializerSettings
                 {
                     EmitTypeInformation = System.Runtime.Serialization.EmitTypeInformation.Never
                 };
-            var ser = new DataContractJsonSerializer(typeof(T),  settings);
+             ser = new DataContractJsonSerializer(typeof(T),  settings);
+
+# else
+            ser = new DataContractJsonSerializer(typeof(T));
+#endif
+
             string jsonString;
             using (var ms = new MemoryStream())
             {
