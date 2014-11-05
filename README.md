@@ -1,4 +1,4 @@
-Beebotte .Net SDK
+Beebotte .Net SDK (Client Library is not yet for use)
 ===================
 
 | what          | where                                  |
@@ -144,3 +144,4 @@ The library provides a set of methods to manipulate connections as follows:
 //Delete User connections
 
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
+
