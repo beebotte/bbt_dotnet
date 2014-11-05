@@ -182,7 +182,7 @@ namespace Beebotte.API.Client.Net
             subscriptionMessage.Add("channel", "control");
             subscriptionMessage.Add("event", "subscribe");
             subscriptionData.Add("sid", Sid);
-            if (subscription.Private)
+            if (subscription.Private || subscription.Write)
             {
                 subscriptionData.Add("sig", SignSubscription(subscription));
             }
