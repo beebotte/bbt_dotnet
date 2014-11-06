@@ -17,7 +17,12 @@ issue in github. Please provide as much information as possible about the issue 
     
 ## Install
 
-Clone the source code from github
+Nuget Install: https://www.nuget.org/packages/Beebotte.API.Server.Net
+
+    Install-package Beebotte.API.Server.Net
+    
+Repository Cloning:
+
     git clone https://github.com/beebotte/bbt_dotnet.git
   
 ## Usage
