@@ -1,4 +1,4 @@
-Beebotte .Net SDK (Client Library is not yet for use)
+Beebotte .Net SDK
 ===================
 
 | what          | where                                  |
