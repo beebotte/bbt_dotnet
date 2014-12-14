@@ -1,4 +1,4 @@
-Beebotte .Net SDK (Client Library is not yet for use)
+Beebotte .Net SDK
 ===================
 
 | what          | where                                  |
@@ -17,7 +17,12 @@ issue in github. Please provide as much information as possible about the issue 
     
 ## Install
 
-Clone the source code from github
+Nuget Install: https://www.nuget.org/packages/Beebotte.API.Server.Net
+
+    Install-package Beebotte.API.Server.Net
+    
+Repository Cloning:
+
     git clone https://github.com/beebotte/bbt_dotnet.git
   
 ## Usage
@@ -145,3 +150,7 @@ The library provides a set of methods to manipulate connections as follows:
 
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
+## License
+Copyright 2013 - 2014 Beebotte.
+
+[The MIT License](http://opensource.org/licenses/MIT)
