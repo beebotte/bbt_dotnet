@@ -151,6 +151,6 @@ The library provides a set of methods to manipulate connections as follows:
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
 ## License
-Copyright 2013 - 2014 Beebotte.
+Copyright 2013 - 2017 Beebotte.
 
 [The MIT License](http://opensource.org/licenses/MIT)
