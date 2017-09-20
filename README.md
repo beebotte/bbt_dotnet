@@ -140,7 +140,7 @@ The library provides a set of methods to manipulate connections as follows:
 
 //Get all connections
 
-    var connections = bbtConnector.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
+    var connections = bbt.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
 
 //Get connections for a given user
 
