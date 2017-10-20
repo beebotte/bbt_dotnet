@@ -115,11 +115,11 @@ The library provides a set of methods to manipulate channel objects as follows:
     channel.Label = "label1";
     channel.Description = "description1";
     channel.IsPublic = false;
-    var resources = new List<ResourceData>
-        {
-            new ResourceData("resource1", "Hello"),
-            new ResourceData("resource2", "World")
-        };
+    var resources = new List<Resource>
+    {
+        new Resource("resource1","resource1", "resource 1", "string"),
+        new Resource("resource2","resource2", "resource 2", "string")
+    };
     channel.Resources = resources;
     bbt.CreateChannel(channel);
 
@@ -140,7 +140,7 @@ The library provides a set of methods to manipulate connections as follows:
 
 //Get all connections
 
-    var connections = bbtConnector.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
+    var connections = bbt.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
 
 //Get connections for a given user
 
