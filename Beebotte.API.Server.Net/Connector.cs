@@ -191,9 +191,11 @@ namespace Beebotte.API.Server.Net
         /// <param name="timestamp">Time stamp associated to the record to publish.
         /// The time stamp represents milliseconds since epoch.
         /// This parameter defaults to the current time when left blank</param>
+        /// /// <param name="isPrivatechannel">Indicates if the channel is private.</param>
         /// <returns>Boolean value. True if the operation was successful, False in the otherwise</returns>
-        public bool Publish(string channel, string resource, object data, int timestamp = 0)
+        public bool Publish(string channel, string resource, object data, int timestamp = 0, bool isPrivateChannel = false)
         {
+            channel = isPrivateChannel ? String.Format("private-{0}", channel) : channel;
             var message = new TransientMessage(channel, resource, data, timestamp);
             return GetResponse(message);
         }
@@ -215,9 +217,11 @@ namespace Beebotte.API.Server.Net
         /// </summary>
         /// <param name="channel">A channel name to write to (e.g. channel1)</param>
         /// <param name="messages">List of ResourceMessage representing the data records to be published to the given channel.</param>
+        /// <param name="isPrivatechannel">Indicates if the channel is private.</param>
         /// <returns>List of ResourceRecord</returns>
-        public bool PublishBulk(string channel, List<ResourceData> messages)
+        public bool PublishBulk(string channel, List<ResourceData> messages, bool isPrivateChannel = false)
         {
+            channel = isPrivateChannel ? String.Format("private-{0}", channel) : channel;
             var bulkMessage = new BulkTransientMessage(channel) { Records = messages };
             return GetResponse(bulkMessage);
         }
