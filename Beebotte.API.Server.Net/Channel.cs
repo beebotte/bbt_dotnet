@@ -144,6 +144,7 @@ namespace Beebotte.API.Server.Net
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         internal override bool ValidateSchema()
         {
+
             var valid = false;
             valid = Utilities.ValidateChannelFormat(Name) && Utilities.ValidateLabelFormat(Label) && Resources != null &&
                     Resources.Count > 0;

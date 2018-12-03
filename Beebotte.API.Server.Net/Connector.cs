@@ -11,9 +11,12 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// The Net namespace.
@@ -59,7 +62,30 @@ namespace Beebotte.API.Server.Net
         /// <value>The port.</value>
         [DefaultValue(Constants.DefaultPort)]
         public int Port { get; set; }
-        
+
+        public string Token { get; set; }
+
+        protected string AuthenticationType
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(SecureKey) && !String.IsNullOrEmpty(AccessKey))
+                {
+                    return AuthenticationTypes.APIKeys.ToString();
+                }
+                else if (!String.IsNullOrEmpty(Token))
+                {
+                    return Token.Contains(Constants.IAMTokenPrefix) ?
+                        AuthenticationTypes.IAMToken.ToString() : AuthenticationTypes.Token.ToString();
+                }
+                else
+
+                {
+                    throw new MissingParameterException("You must provide an authentication token or your API access and secret keys!");
+                }
+            }
+        }
+
         #endregion
 
         #region Fields
@@ -94,8 +120,8 @@ namespace Beebotte.API.Server.Net
         /// Initialize a new instance of Beebotte connector
         /// </summary>
         /// <param name="hostName">Beebotte API host name</param>
-        public Connector(string hostName)
-            : this(hostName, Constants.DefaultProtocol, Constants.DefaultPort, Constants.DefaultVersion)
+        public Connector(string hostname)
+            : this(hostname, Constants.DefaultProtocol, Constants.DefaultPort, Constants.DefaultVersion)
         {
         }
 
@@ -132,6 +158,23 @@ namespace Beebotte.API.Server.Net
             }
             AccessKey = accessKey;
             SecureKey = secureKey;
+            Hostname = hostname;
+            Protocol = protocol;
+            Port = port;
+            APIVersion = version;
+        }
+
+        public Connector(string token, string hostname, string protocol, int port, string version)
+        {
+            if (String.IsNullOrEmpty(token) || String.IsNullOrEmpty(hostname) ||
+                String.IsNullOrEmpty(protocol) || String.IsNullOrEmpty(version))
+            {
+                throw new MissingParameterException(
+                    String.Format(
+                        "Missing parameter(s) to connect to Beebotte. Token: {0}, Hostoname:{1}, Protocol:{2}, Port:{3}, Version:{4}.",
+                        token, hostname, protocol, port, version));
+            }
+            Token = token;
             Hostname = hostname;
             Protocol = protocol;
             Port = port;
@@ -179,7 +222,7 @@ namespace Beebotte.API.Server.Net
         public bool Write(string channel, string resource, object data, int timeStamp = 0)
         {
             var message = new PersistentMessage(channel, resource, data, timeStamp);
-            return GetResponse(message);
+            return GetResponse(message, true);
         }
 
         /// <summary>
@@ -197,7 +240,7 @@ namespace Beebotte.API.Server.Net
         {
             channel = isPrivateChannel ? String.Format("private-{0}", channel) : channel;
             var message = new TransientMessage(channel, resource, data, timestamp);
-            return GetResponse(message);
+            return GetResponse(message, true);
         }
 
         /// <summary>
@@ -209,7 +252,7 @@ namespace Beebotte.API.Server.Net
         public List<ResourceRecord> WriteBulk(string channel, List<ResourceData> messages)
         {
             var bulkMessage = new BulkPersistentMessage(channel) { Records = messages };
-            return GetMultiResponse(bulkMessage);
+            return GetMultiResponse(bulkMessage, true);
         }
 
         /// <summary>
@@ -223,7 +266,7 @@ namespace Beebotte.API.Server.Net
         {
             channel = isPrivateChannel ? String.Format("private-{0}", channel) : channel;
             var bulkMessage = new BulkTransientMessage(channel) { Records = messages };
-            return GetResponse(bulkMessage);
+            return GetResponse(bulkMessage, true);
         }
 
         /// <summary>
@@ -258,7 +301,7 @@ namespace Beebotte.API.Server.Net
         public List<ResourceRecord> Read(string channel, string resource, int limit = 0, string source = "", string timeRange = "")
         {
             var message = new PrivateMessage(channel, resource, limit, source, timeRange);
-            return GetMultiResponse(message);
+            return GetMultiResponse(message, true);
         }
 
         /// <summary>
@@ -294,7 +337,7 @@ namespace Beebotte.API.Server.Net
         public List<ResourceRecord> PublicRead(string username, string channel, string resource, int limit = 0, string source = "", string timeRange = "")
         {
             var message = new PublicMessage(username, channel, resource, limit, source, timeRange);
-            return GetMultiResponse(message);
+            return GetMultiResponse(message, true);
         }
 
         /// <summary>
@@ -305,7 +348,7 @@ namespace Beebotte.API.Server.Net
         public bool CreateChannel(Channel channel)
         {
             channel.SetCreateMode();
-            return GetResponse(channel);
+            return GetResponse(channel, false);
         }
 
         /// <summary>
@@ -317,7 +360,7 @@ namespace Beebotte.API.Server.Net
         {
             var channel = new Channel(name);
             channel.SetGetMode();
-            return JsonHelper.JsonDeserialize<Channel>(SendRequest(channel));
+            return JsonHelper.JsonDeserialize<Channel>(SendRequest(channel, false));
         }
 
         /// <summary>
@@ -328,7 +371,7 @@ namespace Beebotte.API.Server.Net
         {
             var channel = new Channel();
             channel.SetGetAllMode();
-            return JsonHelper.JsonDeserialize<List<Channel>>(SendRequest(channel));
+            return JsonHelper.JsonDeserialize<List<Channel>>(SendRequest(channel, false));
         }
 
         /// <summary>
@@ -341,7 +384,7 @@ namespace Beebotte.API.Server.Net
             var channel = new Channel(name);
             channel.SetDeleteMode();
             bool result;
-            Boolean.TryParse(SendRequest(channel), out result);
+            Boolean.TryParse(SendRequest(channel, false), out result);
             return result;
         }
 
@@ -355,7 +398,7 @@ namespace Beebotte.API.Server.Net
             var channel = new Channel();
             channel.Owner = owner;
             channel.SetPublicReadAllMode();
-            return JsonHelper.JsonDeserialize<List<Channel>>(SendRequest(channel));
+            return JsonHelper.JsonDeserialize<List<Channel>>(SendRequest(channel, false));
         }
 
         /// <summary>
@@ -368,7 +411,7 @@ namespace Beebotte.API.Server.Net
         {
             var channel = new Channel(owner, channelName);
             channel.SetPublicReadMode();
-            return JsonHelper.JsonDeserialize<Channel>(SendRequest(channel));
+            return JsonHelper.JsonDeserialize<Channel>(SendRequest(channel, false));
         }
 
         /// <summary>
@@ -379,7 +422,7 @@ namespace Beebotte.API.Server.Net
         public bool CreateResource(Resource resource)
         {
             resource.SetCreateMode();
-            return GetResponse(resource);
+            return GetResponse(resource, false);
         }
 
         /// <summary>
@@ -392,7 +435,7 @@ namespace Beebotte.API.Server.Net
         {
             var resource = new Resource(channel, name);
             resource.SetGetMode();
-            return JsonHelper.JsonDeserialize<Resource>(SendRequest(resource));
+            return JsonHelper.JsonDeserialize<Resource>(SendRequest(resource, false));
         }
 
         /// <summary>
@@ -404,7 +447,7 @@ namespace Beebotte.API.Server.Net
         {
             var resource = new Resource(channel);
             resource.SetGetAllMode();
-            return JsonHelper.JsonDeserialize<List<Resource>>(SendRequest(resource));
+            return JsonHelper.JsonDeserialize<List<Resource>>(SendRequest(resource, false));
         }
 
         /// <summary>
@@ -418,7 +461,7 @@ namespace Beebotte.API.Server.Net
             var resource = new Resource(channel, name);
             resource.SetDeleteMode();
             bool result;
-            Boolean.TryParse(SendRequest(resource), out result);
+            Boolean.TryParse(SendRequest(resource, false), out result);
             return result;
         }
 
@@ -430,7 +473,7 @@ namespace Beebotte.API.Server.Net
         {
             var connection = new Connection<T>();
             connection.SetGetAllMode();
-            List<Connection<T>> connections = JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection));
+            List<Connection<T>> connections = JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection, false));
             return connections;
         }
 
@@ -444,7 +487,7 @@ namespace Beebotte.API.Server.Net
         {
             var connection = new Connection<T>();
             connection.SetGetMode(userId, sessionId);
-            return JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection));
+            return JsonHelper.JsonDeserialize<List<Connection<T>>>(SendRequest(connection, false));
         }
 
         /// <summary>
@@ -458,8 +501,138 @@ namespace Beebotte.API.Server.Net
         {
             var connection = new Connection<T>();
             connection.SetDeleteMode(userId, sessionId);
-            SendRequest(connection);
+            SendRequest(connection, false);
         }
+
+        /// <summary>
+        /// This method allows you to create a new IAM token
+        /// </summary>
+        /// <param name="iamtoken">object of type Beebotte.API.Server.Net.IAMToken containing the IAM token details</param>
+        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        public IAMToken CreateIAMToken(IAMToken iamtoken)
+        {
+            iamtoken.SetCreateMode();
+            var response = GetResponseValue(iamtoken, false);
+            return JsonConvert.DeserializeObject<IAMToken>(response);
+        }
+
+        /// <summary>
+        /// This method allows you to get the IAM token given its ID
+        /// </summary>
+        /// <param name="iamTokenId">The ID of the IAM token to get</param>
+        /// <returns>object of type Beebotte.API.Server.Net.IAMToken representing the IAM token</returns>
+        public IAMToken GetIAMToken(string iamTokenId)
+        {
+            var iamToken = new IAMToken(iamTokenId);
+            iamToken.SetGetMode();
+            var response = SendRequest(iamToken, false);
+            return JsonConvert.DeserializeObject<IAMToken>(response);
+        }
+
+        /// <summary>
+        /// This method allows you to delete an IAM token.
+        /// </summary>
+        /// <param name="iamTokenId">The ID of the IAM token to delete</param>
+        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        public bool DeleteIAMToken(string iamTokenId)
+        {
+            var iamToken = new IAMToken(iamTokenId);
+            iamToken.SetDeleteMode();
+            bool result;
+            Boolean.TryParse(SendRequest(iamToken, false), out result);
+            return result;
+        }
+
+        /// <summary>
+        /// This method allows you to get all the IAM tokens
+        /// </summary>
+        /// <returns>List of Beebotte.API.Server.Net.IAMToken</returns>
+        public List<IAMToken> GetAllIAMTokens()
+        {
+            var iamToken = new IAMToken();
+            iamToken.SetGetAllMode();
+            var response = SendRequest(iamToken, false);
+            return JsonConvert.DeserializeObject<List<IAMToken>>(response);
+        }
+
+        /// <summary>
+        /// This method allows you to create a new BeeRule
+        /// </summary>
+        /// <param name="rule">object of type Beebotte.API.Server.Net.BeeRule containing the BeeRule details</param>
+        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        public string CreateBeeRule(BeeRule rule)
+        {
+            rule.SetCreateMode();
+            var response = GetResponseValue(rule, false);
+            JObject o = JObject.Parse(response);
+            string name = (string)o["_id"];
+            return name;
+        }
+
+        /// <summary>
+        /// This method allows you to delete a BeeRule.
+        /// </summary>
+        /// <param name="beeRuleId">the ID of the BeeRule to delete</param>
+        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        public bool DeleteBeeRule(string beeRuleId)
+        {
+            var beerule = new BeeRule(beeRuleId);
+            beerule.SetDeleteMode();
+            bool result;
+            Boolean.TryParse(SendRequest(beerule, false), out result);
+            return result;
+        }
+
+        /// <summary>
+        /// This method allows you to get a BeeRule given its ID
+        /// </summary>
+        /// <param name="ruleId">the ID of the BeeRule to ge</param>
+        /// <returns>object of type Beebotte.API.Server.Net.BeeRule representing the BeeRule</returns>
+        public BeeRule GetBeeRule(string ruleId)
+        {
+            var rule = new BeeRule(ruleId);
+            rule.SetGetMode();
+            var response = SendRequest(rule, false);
+            return JsonConvert.DeserializeObject<BeeRule>(response);
+        }
+
+        /// <summary>
+        /// This method allows to retrieveall Beerules of the user satisfying query on the rule trigger.
+        /// </summary>
+        /// <param name="action">BeeRule action</param>
+        /// <param name="trigger">The BeeRule trigger type</param>
+        /// <param name="channel">The BeeRule trigger channel</param>
+        /// <param name="resource">The BeeRule trigger resource</param>
+        /// <returns>List of Beebotte.API.Server.Net.BeeRule</returns>
+        public List<BeeRule> GetBeeRules(string action, string trigger, string channel, string resource)
+        {
+            if (!Enum.IsDefined(typeof(ActionTypes), action) || !Enum.IsDefined(typeof(TriggerTypes), trigger) ||
+                !Regex.IsMatch(channel, Constants.TriggerChannelSchema) || !Regex.IsMatch(resource, Constants.TriggerResourceSchema)
+                )
+                throw (new InvalidParameterSchemaException("GetBeeRules", String.Format("action:{0}, trigger:{1}, channel:{2}, resource:{3}", action, trigger, channel, resource)));
+            BeeRule rule = new BeeRule(action, trigger, channel, resource);
+            rule.SetGetAllMode();
+            var response = SendRequest(rule, false);
+            return JsonConvert.DeserializeObject<List<BeeRule>>(response);
+
+        }
+
+        /// <summary>
+        /// This methos allows you to invoke a Beerule given by its identifier.
+        /// </summary>
+        /// <param name="beeRuleID">The ID of the BeeRule to invoke</param>
+        /// <param name="beeRuleInvocation">object of type Beebotte.API.Server.Net.BeeRuleInvocation containing the BeeRule Invocation details</param>
+        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        public bool InvokeBeeRule(string beeRuleID, BeeRuleInvocation beeRuleInvocation)
+        {
+            beeRuleInvocation._beeruleId = beeRuleID;
+            beeRuleInvocation.SetCreateMode();
+            var response = GetResponseValue(beeRuleInvocation, false);
+            bool result;
+            Boolean.TryParse(response, out result);
+            return result;
+        }
+
 
         #endregion
 
@@ -471,11 +644,11 @@ namespace Beebotte.API.Server.Net
         /// <param name="message">The message.</param>
         /// <returns>List&lt;ResourceRecord&gt;.</returns>
         /// <exception cref="InvalidParameterSchemaException"></exception>
-        private List<ResourceRecord> GetMultiResponse(RequestBase message)
+        private List<ResourceRecord> GetMultiResponse(RequestBase message, bool supporChannelTokenAuth)
         {
             if (!message.ValidateSchema())
                 throw (new InvalidParameterSchemaException(OperationUri.Write.ToString(), message.SerializedContent));
-            return ResourceRecord.Deserialize(SendRequest(message));
+            return ResourceRecord.Deserialize(SendRequest(message, supporChannelTokenAuth));
         }
 
         /// <summary>
@@ -484,13 +657,20 @@ namespace Beebotte.API.Server.Net
         /// <param name="message">The message.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="InvalidParameterSchemaException"></exception>
-        private bool GetResponse(RequestBase message)
+        private bool GetResponse(RequestBase message, bool supporChannelTokenAuth)
         {
             if (!message.ValidateSchema())
-                throw (new InvalidParameterSchemaException(message.Uri, message.SerializedContent));
+                throw (new InvalidParameterSchemaException(String.Format("Method: {0}. Error Message: {1}", message.Uri, message.ModelSchemaError)));
             bool result;
-            Boolean.TryParse(SendRequest(message), out result);
+            Boolean.TryParse(SendRequest(message, supporChannelTokenAuth), out result);
             return result;
+        }
+
+        private string GetResponseValue(RequestBase message, bool supporChannelTokenAuth)
+        {
+            if (!message.ValidateSchema())
+                throw (new InvalidParameterSchemaException(String.Format("Method: {0}. Error Message: {1}", message.Uri, message.ModelSchemaError)));
+            return SendRequest(message, supporChannelTokenAuth);
         }
 
         /// <summary>
@@ -498,17 +678,31 @@ namespace Beebotte.API.Server.Net
         /// </summary>
         /// <param name="message">The message.</param>
         /// <returns>System.String.</returns>
-        private string SendRequest(RequestBase message)
+        private string SendRequest(RequestBase message, bool supporChannelTokenAuth)
         {
             _date = DateTime.UtcNow;
             var url = Utilities.GenerateUrl(Protocol, Hostname, Port, message.Uri);
             var headers = new Dictionary<string, string>();
             if (message.RequireAuthentication)
             {
-                var signature = Utilities.GenerateHMACHash(message.GenerateStringToSign(_date), SecureKey);
-                headers.Add("Authorization", String.Format("{0}:{1}", AccessKey, signature));
+                if (String.Equals(AuthenticationType, AuthenticationTypes.Token.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!supporChannelTokenAuth)
+                        throw new NotSupportedException("Method Not Allowed Error: This method is not allowed for Channel Token based authentication! You must provide your Access and Secret Keys, or your IAM token instead!'");
+                    headers.Add("X-Auth-Token", Token);
+                }
+                else if (String.Equals(AuthenticationType, AuthenticationTypes.IAMToken.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    headers.Add("X-Auth-Token", Token);
+                }
+
+                else
+                {
+                    var signature = Utilities.GenerateHMACHash(message.GenerateStringToSign(_date), SecureKey);
+                    headers.Add("Authorization", String.Format("{0}:{1}", AccessKey, signature));
+                }
             }
-           
+
             if (!String.IsNullOrEmpty(message.HashedContent))
             {
                 headers.Add("Content-MD5", message.HashedContent);

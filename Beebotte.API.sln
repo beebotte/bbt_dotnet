@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beebotte.API.Server.Net", "Beebotte.API.Server.Net\Beebotte.API.Server.Net.csproj", "{DC92227E-8BC4-474B-94BC-9B10896F0870}"
 EndProject
@@ -14,16 +14,16 @@ Global
 		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.CD_ROM|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.CD_ROM|Any CPU.Build.0 = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Debug|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Debug|Any CPU.Build.0 = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.DVD-5|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.DVD-5|Any CPU.Build.0 = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.Build.0 = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.Build.0 = Release 3.5|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{DC92227E-8BC4-474B-94BC-9B10896F0870}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

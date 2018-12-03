@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Beebotte.API.Server.Net</id>
+    <version>1.0.0</version>
+    <authors>sw09</authors>
+    <owners>sw09</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/beebotte/bbt_dotnet</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package description</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Tag1 Tag2</tags>
+   <dependencies>
+      <dependency id="SocketIoClientDotNet" version="12.0.1" />
+    </dependencies>
+	
+  </metadata>
+  <files>
+        <file src="bin\Release\Beebotte.API.Server.Net.dll" target="lib\Beebotte.API.Server.Net.dll" />
+    </files>
+</package>

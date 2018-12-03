@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 /// <summary>
 /// The Net namespace.
@@ -56,7 +57,13 @@ namespace Beebotte.API.Server.Net
         [Description("/{0}/public/channels/")]
         ReadPublicChannel,
         [Description("/{0}/connections/")]
-        ManageConnection
+        ManageConnection,
+        [Description("/{0}/beerules")]
+        ManageBeeRule,
+        [Description("/{0}/iamtokens")]
+        ManageIAMTokens,
+        [Description("/{0}/beerules")]
+        InvokeBeeRule,
     }
 
     /// <summary>
@@ -91,103 +98,158 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// Any
         /// </summary>
-        [Description("any")] 
+        [Description("any")]
         Any,
         /// <summary>
         /// The number
         /// </summary>
-        [Description("number")] 
+        [Description("number")]
         Number,
         /// <summary>
         /// The string
         /// </summary>
-        [Description("string")] 
+        [Description("string")]
         String,
         /// <summary>
         /// The object
         /// </summary>
-        [Description("object")] 
+        [Description("object")]
         Object,
         /// <summary>
         /// The function
         /// </summary>
-        [Description("function")] 
+        [Description("function")]
         Function,
         /// <summary>
         /// The array
         /// </summary>
-        [Description("array")] 
+        [Description("array")]
         Array,
         /// <summary>
         /// The alphabetic
         /// </summary>
-        [Description("alphabetic")] 
+        [Description("alphabetic")]
         Alphabetic,
         /// <summary>
         /// The alphanumeric
         /// </summary>
-        [Description("alphanumeric")] 
+        [Description("alphanumeric")]
         Alphanumeric,
         /// <summary>
         /// The decimal
         /// </summary>
-        [Description("decimal")] 
+        [Description("decimal")]
         Decimal,
         /// <summary>
         /// The rate
         /// </summary>
-        [Description("rate")] 
+        [Description("rate")]
         Rate,
         /// <summary>
         /// The percentage
         /// </summary>
-        [Description("percentage")] 
+        [Description("percentage")]
         Percentage,
         /// <summary>
         /// The email
         /// </summary>
-        [Description("email")] 
+        [Description("email")]
         Email,
         /// <summary>
         /// The GPS
         /// </summary>
-        [Description("gps")] 
+        [Description("gps")]
         GPS,
         /// <summary>
         /// The cpu
         /// </summary>
-        [Description("cpu")] 
+        [Description("cpu")]
         CPU,
         /// <summary>
         /// The memory
         /// </summary>
-        [Description("memory")] 
+        [Description("memory")]
         Memory,
         /// <summary>
         /// The netif
         /// </summary>
-        [Description("netif")] 
+        [Description("netif")]
         Netif,
         /// <summary>
         /// The disk
         /// </summary>
-        [Description("disk")] 
+        [Description("disk")]
         Disk,
         /// <summary>
         /// The temperature
         /// </summary>
-        [Description("temperature")] 
+        [Description("temperature")]
         Temperature,
         /// <summary>
         /// The humidity
         /// </summary>
-        [Description("humidity")] 
+        [Description("humidity")]
         Humidity,
         /// <summary>
         /// The body temperature
         /// </summary>
-        [Description("body_temp")] 
+        [Description("body_temp")]
         BodyTemperature
+    }
+    public enum TriggerTypes
+    {
+        connect,
+        disconnect,
+        subscribe,
+        unsubscribe,
+        join,
+        leave,
+        publish,
+        write
+    }
+
+    public enum ActionTypes
+    {
+        publish,
+        write,
+        sms, // reserved for future use
+        email, // reserved for future use
+        webhook
+    }
+
+    public enum AuthenticationTypes
+    {
+        APIKeys,
+        Token,
+        IAMToken
+    }
+
+    public enum AdminACLTypes
+    {
+        [Description("admin:connection:read")]
+        ConnectionRead,
+        [Description("admin:connection:write")]
+        ConnectionWrite,
+        [Description("admin:channel:read")]
+        ChannelRead,
+        [Description("admin:channel:write")]
+        ChannelWrite,
+        [Description("admin:beerule:read")]
+        BeeRuleRead,
+        [Description("admin:beerule:write")]
+        BeeRuleWrite,
+        [Description("admin:iam:read")]
+        IAMRead,
+        [Description("admin:iam:write")]
+        IAMWrite
+    }
+
+    public enum DataACLTypes
+    {
+        [Description("data:read")]
+        DataRead,
+        [Description("data:write")]
+        DataWrite
     }
 
 
@@ -227,6 +289,14 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// The default API version
         /// </summary>
-        public const string DefaultVersion = "v1";  
+        public const string DefaultVersion = "v1";
+
+        public const string ChannelResourceSchema = @"^\w+$";
+        public const string PrivateChannelSchema = @"^(private-)?\w+$";
+        public const string TriggerChannelSchema = @"^(\*|(private-)?(\w\w+))$";
+
+        public const string TriggerResourceSchema = @"^(\*|\w\w+)$";
+
+        public const string IAMTokenPrefix = "iamtkn_";
     }
 }

@@ -67,6 +67,8 @@ namespace Beebotte.API.Server.Net
             }
         }
 
+        internal string ModelSchemaError { get; set; }
+
         /// <summary>
         /// Gets the content of the serialized.
         /// </summary>

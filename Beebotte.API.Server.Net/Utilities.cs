@@ -14,7 +14,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -45,6 +47,15 @@ namespace Beebotte.API.Server.Net
             return attribute == null ? value.ToString() : attribute.Description;
         }
 
+
+        public static class EnumUtil
+        {
+            public static IEnumerable<T> GetValues<T>()
+            {
+                return Enum.GetValues(typeof(T)).Cast<T>();
+            }
+        }
+
         /// <summary>
         /// Gets the operation URI.
         /// </summary>
@@ -69,7 +80,7 @@ namespace Beebotte.API.Server.Net
         {
             return Enum.GetValues(enumType)
                        .Cast<object>()
-                       .ToDictionary(k => (int) k, v => ((Enum) v).GetDescription());
+                       .ToDictionary(k => (int)k, v => ((Enum)v).GetDescription());
 
         }
 
@@ -206,6 +217,34 @@ namespace Beebotte.API.Server.Net
             return false;
         }
 
+
+
         #endregion
+
+        #region Extension Methods
+
+        public static string ToDescErrorsString(this IEnumerable<ValidationResult> source)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source), $"The property {nameof(source)}, has null value");
+
+            StringBuilder result = new StringBuilder();
+
+            if (source.Count() > 0)
+            {
+                result.AppendLine("Schema validation errors:");
+                source.ToList()
+                    .ForEach(
+                        s =>
+                            result.AppendFormat("  {0} --> {1}{2}", s.MemberNames.FirstOrDefault(), s.ErrorMessage,
+                                Environment.NewLine));
+            }
+            else
+                result.AppendLine(string.Empty);
+
+            return result.ToString();
+        }
+
+        #endregion
+
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Beebotte.API.Server.Net</RootNamespace>
     <AssemblyName>Beebotte.API.Server.Net</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -33,27 +33,10 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release 3.5|AnyCPU' ">
-    <!-- other elements elided -->
-    <OutputPath>bin\Release\net35\</OutputPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release 4.5|AnyCPU' ">
-    <!-- other elements elided -->
-    <OutputPath>bin\Release\net45\</OutputPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 4.0|AnyCPU'">
-    <!-- other elements elided -->
-    <OutputPath>bin\Release\net40\</OutputPath>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -73,7 +56,11 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
@@ -89,6 +76,8 @@
     <Reference Include="System.ServiceModel.Web" Condition=" $(TargetFrameworkVersion.Replace('v', '')) &gt;= 3.5 and !($(TargetFrameworkVersion.Replace('v', '')) &gt;= 4.5)  " />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeeRule.cs" />
+    <Compile Include="BeeRuleInvocation.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="BulkPersistentMessage.cs" />
@@ -96,6 +85,10 @@
     <Compile Include="Channel.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="IAMToken.cs" />
+    <Compile Include="JsonSubTypes.cs" />
+    <Compile Include="JsonSubtypesConverter.cs" />
+    <Compile Include="JsonSubtypesConverterBuilder.cs" />
     <Compile Include="RequestBase.cs" />
     <Compile Include="PersistentMessage.cs" />
     <Compile Include="PrivateMessage.cs" />
@@ -112,6 +105,7 @@
     <Compile Include="Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestClient.cs" />
+    <Compile Include="ValidateObjectAttribute.cs" />
     <Compile Include="WriteMessageBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +118,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Key.snk" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
