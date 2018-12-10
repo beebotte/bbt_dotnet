@@ -88,27 +88,27 @@ If you have multiple records to publish (to one or multiple resources of the sam
 ### Resource Management
 The library provides a set of methods to manipulate resource objects as follows:
 
-//Create the resource object
+#### Create the resource object
 
     var resource = new Resource("channel1", "resource1", "string");
     bbt.CreateResource(resource);    
 
-//Get all resource objects for a given channel
+#### Get all resource objects for a given channel
 
     var resources = bbt.GetAllResources("channel1");
     
-//Get a specific resource object
+#### #### Get a specific resource object
 
     var resource = bbt.GetResource("channel1", "resource1");
     
-//Delete a resource object
+#### Delete a resource object
 
     bbt.DeleteResource("channel1", "resource1");
 
 ### Channel Management
 The library provides a set of methods to manipulate channel objects as follows:
 
-//Create the channel object
+#### Create the channel object
 
     Channel channel = new Channel();
     channel.Name = "channel1";
@@ -123,33 +123,113 @@ The library provides a set of methods to manipulate channel objects as follows:
     channel.Resources = resources;
     bbt.CreateChannel(channel);
 
-//Get all channel objects
+#### Get all channel objects
 
     var channels = bbt.GetAllChannels();
 
-//Get a specific channel object
+#### Get a specific channel object
 
     var channel = bbt.GetChannel("channel1");
+    
+After getting a channel, you can access the channel token as follows:
 
-//Delete a specific channel object
+    var token = channel.Token;
+
+
+#### Delete a specific channel object
 
     bbt.DeleteChannel("channel1");
 
 ### Connection Management
 The library provides a set of methods to manipulate connections as follows:
 
-//Get all connections
+#### Get all connections
 
     var connections = bbt.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
 
-//Get connections for a given user
+#### Get connections for a given user
 
     var connections = bbt.GetUserConnections<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
-//Delete User connections
+#### Delete User connections
 
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
+### IAM Token Management
+The library provides a set of methods to manage IAM tokens as follows:
+
+#### Create IAM token that allows to read data from a specific channel
+
+       Connector bbt = new Connector(accesskey, secretkey, hostname);
+       IAMToken readChannelDataToken = new IAMToken();
+       var resources = new List<string>();
+       resources.Add("Car.*");
+       readChannelDataToken.Name = "Read_Car";
+       readChannelDataToken.Description = "Read car channel data";
+       var aclList = new List<ACL>();
+       aclList.Add(new DataACL() { Action = DataACLTypes.DataRead.GetDescription(), Resources = resources });            
+       readChannelDataToken.ACLList = aclList;
+       var createdToken = bbt.CreateIAMToken(readChannelDataToken); 
+       
+
+#### Create IAM token that allows to read and write channels
+
+    Connector bbt = new Connector(accesskey, secretkey, hostname);
+    IAMToken writeChannelToken = new IAMToken();
+    writeChannelToken.Name = "Write_Read_Channel";
+    writeChannelToken.Description = "Write and Read Channel";
+    var aclList = new List<ACL>();
+    aclList.Add(new AdminACL() { Action = AdminACLTypes.ChannelWrite.GetDescription() });
+    aclList.Add(new AdminACL() { Action = AdminACLTypes.ChannelRead.GetDescription() });
+    writeChannelToken.ACLList = aclList;
+    var createdToken = bbt.CreateIAMToken(writeChannelToken);
+
+#### Get all IAM tokens
+
+    var tokens = bbt.GetAllIAMTokens();
+    
+#### Delete an IAM token
+
+    bbt.DeleteIAMToken("token_id");
+    
+#### Get IAM token given its ID
+
+    var token = bbt.GetIAMToken("token_id");
+    
+### BeeRule management
+The library provides a set of methods to manage BeeRules as follows:
+
+#### Create BeeRule
+Assuming that we have a private channel called ArduinoUno with a resource called co, the below code creates a BeeRule that writes data to the co resource whenever the data published to this resource is less than 20
+
+    BeeRule rule = new BeeRule()
+    {
+        Name = "PersistCOData",
+        Description = "persist CO data if value < 20",
+        Trigger = new Trigger() { Channel = "private-ArduinoUno", Resource = "co", Event = TriggerTypes.publish.ToString() },
+        Condition = "trigger.data < 20",
+        Action = new WriteAction()  { Channel= "ArduinoUno", Resource="co"}     
+     };
+     bbt.CreateBeeRule(rule);
+    
+#### Delete a BeeRule
+
+    bbt.DeleteBeeRule("BeeRule_Id");
+    
+#### Get a specific BeeRule
+    
+      var rule = bbt.GetBeeRule("BeeRule_Id");
+      
+#### Invoke a BeeRule
+
+    BeeRuleInvocation invocation = new BeeRuleInvocation();
+    invocation.Channel = "ArduinoUno";
+    invocation.Resource = "co";
+    invocation.Data = 5;
+    bbt.InvokeBeeRule("BeeRule_Id", invocation);
+    
+    
+    
 ## License
 Copyright 2013 - 2017 Beebotte.
 
