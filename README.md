@@ -88,27 +88,27 @@ If you have multiple records to publish (to one or multiple resources of the sam
 ### Resource Management
 The library provides a set of methods to manipulate resource objects as follows:
 
-//Create the resource object
+#### Create the resource object
 
     var resource = new Resource("channel1", "resource1", "string");
     bbt.CreateResource(resource);    
 
-//Get all resource objects for a given channel
+#### Get all resource objects for a given channel
 
     var resources = bbt.GetAllResources("channel1");
     
-//Get a specific resource object
+#### #### Get a specific resource object
 
     var resource = bbt.GetResource("channel1", "resource1");
     
-//Delete a resource object
+#### Delete a resource object
 
     bbt.DeleteResource("channel1", "resource1");
 
 ### Channel Management
 The library provides a set of methods to manipulate channel objects as follows:
 
-//Create the channel object
+#### Create the channel object
 
     Channel channel = new Channel();
     channel.Name = "channel1";
@@ -123,11 +123,11 @@ The library provides a set of methods to manipulate channel objects as follows:
     channel.Resources = resources;
     bbt.CreateChannel(channel);
 
-//Get all channel objects
+#### Get all channel objects
 
     var channels = bbt.GetAllChannels();
 
-//Get a specific channel object
+#### Get a specific channel object
 
     var channel = bbt.GetChannel("channel1");
     
@@ -136,22 +136,22 @@ After getting a channel, you can access the channel token as follows:
     var token = channel.Token;
 
 
-//Delete a specific channel object
+#### Delete a specific channel object
 
     bbt.DeleteChannel("channel1");
 
 ### Connection Management
 The library provides a set of methods to manipulate connections as follows:
 
-//Get all connections
+#### Get all connections
 
     var connections = bbt.GetAllConnections<Beebotte.API.Server.Net.UserInfo>();
 
-//Get connections for a given user
+#### Get connections for a given user
 
     var connections = bbt.GetUserConnections<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
-//Delete User connections
+#### Delete User connections
 
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
