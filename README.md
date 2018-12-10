@@ -130,6 +130,11 @@ The library provides a set of methods to manipulate channel objects as follows:
 //Get a specific channel object
 
     var channel = bbt.GetChannel("channel1");
+    
+After getting a channel, you can access the channel token as follows:
+
+    var token = channel.Token;
+
 
 //Delete a specific channel object
 
@@ -150,6 +155,48 @@ The library provides a set of methods to manipulate connections as follows:
 
     bbt.DeleteConnection<Beebotte.API.Server.Net.UserInfo>("userId", "sessionId");
 
+### IAM Token Management
+The library provides a set of methods to manage IAM tokens as follows:
+
+#### Create IAM token that allows to read data from a specific channel
+
+       Connector bbt = new Connector(accesskey, secretkey, hostname);
+       IAMToken readChannelDataToken = new IAMToken();
+       var resources = new List<string>();
+       resources.Add("Car.*");
+       readChannelDataToken.Name = "Read_Car";
+       readChannelDataToken.Description = "Read car channel data";
+       var aclList = new List<ACL>();
+       aclList.Add(new DataACL() { Action = DataACLTypes.DataRead.GetDescription(), Resources = resources });            
+       readChannelDataToken.ACLList = aclList;
+       var createdToken = bbt.CreateIAMToken(readChannelDataToken); 
+       
+
+#### Create IAM token that allows to read and write channels
+
+    Connector bbt = new Connector(accesskey, secretkey, hostname);
+    IAMToken writeChannelToken = new IAMToken();
+    writeChannelToken.Name = "Write_Read_Channel";
+    writeChannelToken.Description = "Write and Read Channel";
+    var aclList = new List<ACL>();
+    aclList.Add(new AdminACL() { Action = AdminACLTypes.ChannelWrite.GetDescription() });
+    aclList.Add(new AdminACL() { Action = AdminACLTypes.ChannelRead.GetDescription() });
+    writeChannelToken.ACLList = aclList;
+    var createdToken = bbt.CreateIAMToken(writeChannelToken);
+
+#### Get all IAM tokens
+
+    var tokens = bbt.GetAllIAMTokens();
+    
+#### Delete an IAM token
+
+    bbt.DeleteIAMToken("token_id");
+    
+#### Get IAM token given its ID
+
+    var token = bbt.GetIAMToken("token_id");
+    
+    
 ## License
 Copyright 2013 - 2017 Beebotte.
 
