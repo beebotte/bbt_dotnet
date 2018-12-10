@@ -184,6 +184,14 @@ The library provides a set of methods to manage IAM tokens as follows:
     writeChannelToken.ACLList = aclList;
     var createdToken = bbt.CreateIAMToken(writeChannelToken);
 
+#### Update an existing IAM token with a new set of ACL rules
+
+    var resources = new List<string>();
+    resources.Add("Car.*");
+    var aclList = new List<ACL>();
+    aclList.Add(new DataACL() { Action = DataACLTypes.DataWrite.GetDescription(), Resources = resources });
+    var token = bbt.UpdateIAMToken("token_id", aclList);
+
 #### Get all IAM tokens
 
     var tokens = bbt.GetAllIAMTokens();
@@ -210,7 +218,7 @@ Assuming that we have a private channel called ArduinoUno with a resource called
         Condition = "trigger.data < 20",
         Action = new WriteAction()  { Channel= "ArduinoUno", Resource="co"}     
      };
-     bbt.CreateBeeRule(rule);
+     var createdRule = bbt.CreateBeeRule(rule);
     
 #### Delete a BeeRule
 
@@ -223,7 +231,7 @@ Assuming that we have a private channel called ArduinoUno with a resource called
 #### Invoke a BeeRule
 
     BeeRuleInvocation invocation = new BeeRuleInvocation();
-    invocation.Channel = "ArduinoUno";
+    invocation.Channel = "private-ArduinoUno";
     invocation.Resource = "co";
     invocation.Data = 5;
     bbt.InvokeBeeRule("BeeRule_Id", invocation);
