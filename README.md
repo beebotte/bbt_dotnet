@@ -196,6 +196,39 @@ The library provides a set of methods to manage IAM tokens as follows:
 
     var token = bbt.GetIAMToken("token_id");
     
+### BeeRule management
+The library provides a set of methods to manage BeeRules as follows:
+
+#### Create BeeRule
+Assuming that we have a private channel called ArduinoUno with a resource called co, the below code creates a BeeRule that writes data to the co resource whenever the data published to this resource is less than 20
+
+    BeeRule rule = new BeeRule()
+    {
+        Name = "PersistCOData",
+        Description = "persist CO data if value < 20",
+        Trigger = new Trigger() { Channel = "private-ArduinoUno", Resource = "co", Event = TriggerTypes.publish.ToString() },
+        Condition = "trigger.data < 20",
+        Action = new WriteAction()  { Channel= "ArduinoUno", Resource="co"}     
+     };
+     bbt.CreateBeeRule(rule);
+    
+#### Delete a BeeRule
+
+    bbt.DeleteBeeRule("BeeRule_Id");
+    
+#### Get a specific BeeRule
+    
+      var rule = bbt.GetBeeRule("BeeRule_Id");
+      
+#### Invoke a BeeRule
+
+    BeeRuleInvocation invocation = new BeeRuleInvocation();
+    invocation.Channel = "ArduinoUno";
+    invocation.Resource = "co";
+    invocation.Data = 5;
+    bbt.InvokeBeeRule("BeeRule_Id", invocation);
+    
+    
     
 ## License
 Copyright 2013 - 2017 Beebotte.
