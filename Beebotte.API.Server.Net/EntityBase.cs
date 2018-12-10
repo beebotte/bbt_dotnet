@@ -48,7 +48,7 @@ namespace Beebotte.API.Server.Net
         /// The name of the entity. (e.g. channel1, resource1)
         /// </summary>
         /// <value>The name.</value>
-        [DataMember(IsRequired = true, Name = "name", Order = 1)]
+        [DataMember(IsRequired = false, EmitDefaultValue = false, Name = "name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>
@@ -122,6 +122,16 @@ namespace Beebotte.API.Server.Net
         {
             _verb = HttpVerb.GET.ToString();
             _uri = String.Format("{0}/{1}", BaseUri, Name);
+            _requireAuthentication = true;
+        }
+
+        // <summary>
+        /// Sets the update mode.
+        /// </summary>
+        internal void SetUpdateMode(string id)
+        {
+            _verb = HttpVerb.POST.ToString();
+            _uri = String.Format("{0}/{1}", BaseUri, id);
             _requireAuthentication = true;
         }
 

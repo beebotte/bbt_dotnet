@@ -17,7 +17,7 @@
 	
   </metadata>
   <files>
-        <file src="bin\Release\Beebotte.API.Server.Net.dll" target="lib\Beebotte.API.Server.Net.dll" />
+        <file src="Beebotte.API.Server.Net\bin\Release\Beebotte.API.Server.Net.dll" target="lib\Beebotte.API.Server.Net.dll" />
     </files>
 
 </package>

@@ -83,6 +83,13 @@ namespace Beebotte.API.Server.Net
         public string Owner { get; set; }
 
         /// <summary>
+        /// Gets or sets the SoS.
+        /// </summary>
+        /// <value>The SoS.</value>
+        [DataMember(IsRequired = false, EmitDefaultValue = false, Name = "sendOnSubscribe", Order = 9)]
+        public bool SendOnSubscribe { get; set; }
+
+        /// <summary>
         /// Gets the content of the serialized.
         /// </summary>
         /// <value>The content of the serialized.</value>
@@ -178,6 +185,13 @@ namespace Beebotte.API.Server.Net
         public Resource(string channel)
         {
             _channel = channel;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// </summary>
+        public Resource()
+        {
         }
 
         #endregion

@@ -298,5 +298,6 @@ namespace Beebotte.API.Server.Net
         public const string TriggerResourceSchema = @"^(\*|\w\w+)$";
 
         public const string IAMTokenPrefix = "iamtkn_";
+        public const string SDKVersion = "2.0.0";
     }
 }

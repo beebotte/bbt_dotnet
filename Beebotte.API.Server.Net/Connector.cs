@@ -435,7 +435,8 @@ namespace Beebotte.API.Server.Net
         {
             var resource = new Resource(channel, name);
             resource.SetGetMode();
-            return JsonHelper.JsonDeserialize<Resource>(SendRequest(resource, false));
+            var response = SendRequest(resource, false);
+            return JsonConvert.DeserializeObject<Resource>(response);
         }
 
         /// <summary>
@@ -447,7 +448,7 @@ namespace Beebotte.API.Server.Net
         {
             var resource = new Resource(channel);
             resource.SetGetAllMode();
-            return JsonHelper.JsonDeserialize<List<Resource>>(SendRequest(resource, false));
+            return JsonConvert.DeserializeObject<List<Resource>>(SendRequest(resource, false));
         }
 
         /// <summary>
@@ -508,13 +509,29 @@ namespace Beebotte.API.Server.Net
         /// This method allows you to create a new IAM token
         /// </summary>
         /// <param name="iamtoken">object of type Beebotte.API.Server.Net.IAMToken containing the IAM token details</param>
-        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
+        /// <returns>object of type Beebotte.API.Server.Net.IAMToken representing the token created</returns>
         public IAMToken CreateIAMToken(IAMToken iamtoken)
         {
             iamtoken.SetCreateMode();
             var response = GetResponseValue(iamtoken, false);
             return JsonConvert.DeserializeObject<IAMToken>(response);
         }
+
+        /// <summary>
+        /// This method allows you to update an existing IAM token with a new ACL list
+        /// </summary>
+        /// <param name="tokenId">the Id of the token that you want to update</param>
+        /// <param name="aclList">List of Beebotte.API.Server.Net.ACL representing the new set of ACL rules</param>
+        /// <returns>object of type Beebotte.API.Server.Net.IAMToken representing the updated token</returns>
+        public IAMToken UpdateIAMToken(string tokenId, List<ACL> aclList)
+        {
+            IAMToken token = new IAMToken();
+            token.ID = tokenId;
+            token.ACLList = aclList;
+            token.SetUpdateMode(tokenId);
+            return JsonConvert.DeserializeObject<IAMToken>(GetResponseValue(token, false));
+        }
+
 
         /// <summary>
         /// This method allows you to get the IAM token given its ID
@@ -559,14 +576,15 @@ namespace Beebotte.API.Server.Net
         /// This method allows you to create a new BeeRule
         /// </summary>
         /// <param name="rule">object of type Beebotte.API.Server.Net.BeeRule containing the BeeRule details</param>
-        /// <returns>Boolean value. true if the operation was successful, false in the otherwise.</returns>
-        public string CreateBeeRule(BeeRule rule)
+        /// <returns>object of type Beebotte.API.Server.Net.BeeRule containing the BeeRule created.</returns>
+        public BeeRule CreateBeeRule(BeeRule rule)
         {
             rule.SetCreateMode();
             var response = GetResponseValue(rule, false);
-            JObject o = JObject.Parse(response);
-            string name = (string)o["_id"];
-            return name;
+            //JObject o = JObject.Parse(response);
+            //string name = (string)o["_id"];
+            //return name;
+            return JsonConvert.DeserializeObject<BeeRule>(response);
         }
 
         /// <summary>
@@ -586,7 +604,7 @@ namespace Beebotte.API.Server.Net
         /// <summary>
         /// This method allows you to get a BeeRule given its ID
         /// </summary>
-        /// <param name="ruleId">the ID of the BeeRule to ge</param>
+        /// <param name="ruleId">the ID of the BeeRule to get</param>
         /// <returns>object of type Beebotte.API.Server.Net.BeeRule representing the BeeRule</returns>
         public BeeRule GetBeeRule(string ruleId)
         {
@@ -597,9 +615,9 @@ namespace Beebotte.API.Server.Net
         }
 
         /// <summary>
-        /// This method allows to retrieveall Beerules of the user satisfying query on the rule trigger.
+        /// This method allows to retrieval of Beerules of the user satisfying query on the rule trigger.
         /// </summary>
-        /// <param name="action">BeeRule action</param>
+        /// <param name="action">the BeeRule action</param>
         /// <param name="trigger">The BeeRule trigger type</param>
         /// <param name="channel">The BeeRule trigger channel</param>
         /// <param name="resource">The BeeRule trigger resource</param>
@@ -618,7 +636,7 @@ namespace Beebotte.API.Server.Net
         }
 
         /// <summary>
-        /// This methos allows you to invoke a Beerule given by its identifier.
+        /// This methos allows you to invoke a Beerule given its identifier.
         /// </summary>
         /// <param name="beeRuleID">The ID of the BeeRule to invoke</param>
         /// <param name="beeRuleInvocation">object of type Beebotte.API.Server.Net.BeeRuleInvocation containing the BeeRule Invocation details</param>

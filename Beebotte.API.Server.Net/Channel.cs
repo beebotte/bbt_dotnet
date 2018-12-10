@@ -65,6 +65,13 @@ namespace Beebotte.API.Server.Net
         public string Owner { get; set; }
 
         /// <summary>
+        /// Represents that channel token
+        /// </summary>
+
+        [DataMember(IsRequired = false, EmitDefaultValue = false, Name = "token", Order = 7)]
+        public string Token { get; set; }
+
+        /// <summary>
         /// Gets the base URI.
         /// </summary>
         /// <value>The base URI.</value>

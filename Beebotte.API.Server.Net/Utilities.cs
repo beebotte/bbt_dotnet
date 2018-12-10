@@ -141,6 +141,10 @@ namespace Beebotte.API.Server.Net
         }
 
 
+        internal static string GetUserAgent()
+        {
+            return String.Format("beebotte .Net SDK v{0}", Constants.SDKVersion);
+        }
 
         #endregion
 

@@ -153,6 +153,7 @@ namespace Beebotte.API.Server.Net
                         request.Headers.Add(header.Key, header.Value);
                     }
                 }
+                request.UserAgent = Utilities.GetUserAgent();
             }
 
             if (!string.IsNullOrEmpty(PostData) && String.Equals(Method, HttpVerb.POST.ToString(), StringComparison.CurrentCultureIgnoreCase))
