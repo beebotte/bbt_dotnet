@@ -194,7 +194,13 @@ namespace Beebotte.API.Server.Net
         /// The body temperature
         /// </summary>
         [Description("body_temp")]
-        BodyTemperature
+        BodyTemperature,
+
+        /// <summary>
+        /// boolean
+        /// </summary>
+        [Description("boolean")]
+        Boolean
     }
     public enum TriggerTypes
     {
@@ -298,6 +304,6 @@ namespace Beebotte.API.Server.Net
         public const string TriggerResourceSchema = @"^(\*|\w\w+)$";
 
         public const string IAMTokenPrefix = "iamtkn_";
-        public const string SDKVersion = "2.0.0";
+        public const string SDKVersion = "2.2.0";
     }
 }
