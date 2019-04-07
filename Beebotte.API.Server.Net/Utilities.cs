@@ -154,30 +154,30 @@ namespace Beebotte.API.Server.Net
         /// Validates the channel format.
         /// </summary>
         /// <param name="channel">The name of the channel to validate</param>
-        /// <returns><c>true</c> if channel name is not null and is less than or equal to 30 characters, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c> if channel name is not null and is less than or equal to 64 characters, <c>false</c> otherwise.</returns>
         public static bool ValidateChannelFormat(string channel)
         {
-            return !String.IsNullOrEmpty(channel) && Regex.IsMatch(channel, @"^[\s\S]{0,30}$");
+            return !String.IsNullOrEmpty(channel) && Regex.IsMatch(channel, @"^[\s\S]{0,64}$");
         }
 
         /// <summary>
         /// Validates the resource format.
         /// </summary>
         /// <param name="resource">The name of the resource to validate</param>
-        /// <returns><c>true</c> if the resource name is between 2 and 30 characters, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c> if the resource name is between 2 and 64 characters, <c>false</c> otherwise.</returns>
         public static bool ValidateResourceFormat(string resource)
         {
-            return !String.IsNullOrEmpty(resource) && Regex.IsMatch(resource, @"^[\s\S]{2,30}$");
+            return !String.IsNullOrEmpty(resource) && Regex.IsMatch(resource, @"^[\s\S]{2,64}$");
         }
 
         /// <summary>
         /// Validates the label format.
         /// </summary>
         /// <param name="label">The label value.</param>
-        /// <returns><c>true</c> if label value is less than or equal to 30 characters, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c> if label value is less than or equal to 64 characters, <c>false</c> otherwise.</returns>
         public static bool ValidateLabelFormat(string label)
         {
-            return String.IsNullOrEmpty(label) || Regex.IsMatch(label, @"^[\s\S]{0,30}$");
+            return String.IsNullOrEmpty(label) || Regex.IsMatch(label, @"^[\s\S]{0,64}$");
         }
 
         /// <summary>

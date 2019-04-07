@@ -282,7 +282,8 @@ namespace Beebotte.API.Server.Net
         /// day-stats: Instructs to read from the day based statistics</param>
         /// <param name="timeRange">Indicates the time range for the returned data. If source parameter is not set, the following rule applies.
         /// if the time range is less or equal to 6hours the default source would be live.
-        /// if the time range is less or equal to 30 days, the default source would be hour-stats.
+        /// if the time range is less or equal to 
+        /// days, the default source would be hour-stats.
         /// if the time range is larger than 30 days then the default source would be day-stats.
         /// If the source parameter is specified the data source will be the specified one. Beware that requesting records for the last 6month from the live source might include a large number of records. In this case, the limit parameter will apply.
         /// It accepts the following values:
